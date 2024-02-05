@@ -1,0 +1,4 @@
+﻿  7. Перекодировка строк из Unicode в ANSI.cpp
+C:\Users\filip\Desktop\temp\SystemProgrammingC++\examples\Unicode\7. Перекодировка строк из Unicode в ANSI.cpp(7,1): warning C4326: возвращаемый тип "main" должен быть "int", а не "void"
+C:\Users\filip\Desktop\temp\SystemProgrammingC++\examples\Unicode\7. Перекодировка строк из Unicode в ANSI.cpp(10,13): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+  Unicode.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC++\examples\Unicode\x64\Debug\Unicode.exe
