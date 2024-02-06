@@ -1,0 +1,4 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  Timer.cpp
+Timer.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
+  Timer.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson2\examples\Win API\Timer_WM_TIMER\Debug\Timer.exe

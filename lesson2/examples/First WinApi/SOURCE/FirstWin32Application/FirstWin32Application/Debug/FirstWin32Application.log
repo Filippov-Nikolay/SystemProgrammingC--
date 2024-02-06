@@ -1,0 +1,4 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  FirstWin32Application.cpp
+FirstWin32Application.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
+  FirstWin32Application.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson2\examples\First WinApi\SOURCE\FirstWin32Application\Debug\FirstWin32Application.exe

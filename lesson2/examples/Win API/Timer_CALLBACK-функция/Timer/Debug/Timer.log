@@ -1,0 +1,3 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  Timer.cpp
+  Timer.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson2\examples\Win API\Timer_CALLBACK-функция\Debug\Timer.exe

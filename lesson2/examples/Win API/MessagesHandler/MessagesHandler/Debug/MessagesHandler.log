@@ -1,0 +1,4 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  MessagesHandler.cpp
+MessagesHandler.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
+  MessagesHandler.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson2\examples\Win API\MessagesHandler\Debug\MessagesHandler.exe
