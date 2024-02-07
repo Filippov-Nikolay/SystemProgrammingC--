@@ -82,36 +82,39 @@ void KeyUpHandler(HWND hwnd, WPARAM wParam, LPARAM lParam) {
     bool v = true;
     bool h = false;
 
+    int sizeWidthWindow = 300;
+    int sizeHeightWindow = 300;
+
     int screenWidth = GetSystemMetrics(SM_CXSCREEN);
-    int screenHeight = GetSystemMetrics(SM_CYFULLSCREEN);
+    int screenHeight = GetSystemMetrics(SM_CYSCREEN);
 
     if (vkey == VK_RETURN) {
         do {
-            if (counterV != (screenWidth - 300) && sides == 0) {
-                SetWindowPos(hwnd, NULL, counterV++, counterH, 300, 300, SWP_NOZORDER);
+            if (counterV != (screenWidth - sizeWidthWindow) && sides == 0) {
+                SetWindowPos(hwnd, NULL, counterV++, counterH, sizeWidthWindow, sizeHeightWindow, SWP_NOZORDER);
             }
-            else if (counterV == (screenWidth - 300) && sides == 0) {
+            else if (counterV == (screenWidth - sizeWidthWindow) && sides == 0) {
                 sides++;
             }
 
 
-            if (counterH != (screenHeight - 300) && sides == 1) {
-                SetWindowPos(hwnd, NULL, counterV, counterH++, 300, 300, SWP_NOZORDER);
+            if (counterH != (screenHeight - sizeHeightWindow) - 40 && sides == 1) {
+                SetWindowPos(hwnd, NULL, counterV, counterH++, sizeWidthWindow, sizeHeightWindow, SWP_NOZORDER);
             }
-            else if (counterH == (screenHeight - 300) && sides == 1) {
+            else if (counterH == (screenHeight - sizeHeightWindow) - 40 && sides == 1) {
                 sides++;
             }
 
 
             if (counterV != 0 && sides == 2) {
-                SetWindowPos(hwnd, NULL, counterV--, counterH, 300, 300, SWP_NOZORDER);
+                SetWindowPos(hwnd, NULL, counterV--, counterH, sizeWidthWindow, sizeHeightWindow, SWP_NOZORDER);
             }
             else if (counterV == 0 && sides == 2) {
                 sides++;
             }
 
             if (counterH != 0 && sides == 3) {
-                SetWindowPos(hwnd, NULL, counterV, counterH--, 300, 300, SWP_NOZORDER);
+                SetWindowPos(hwnd, NULL, counterV, counterH--, sizeWidthWindow, sizeHeightWindow, SWP_NOZORDER);
             }
             else if (counterV == 0 && sides == 3) {
                 sides = 0;
