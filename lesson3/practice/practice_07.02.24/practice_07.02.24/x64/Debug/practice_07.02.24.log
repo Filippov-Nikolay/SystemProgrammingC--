@@ -1,0 +1,4 @@
+﻿  main.cpp
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson3\practice\practice_07.02.24\practice_07.02.24\main.cpp(54,15): warning C4244: return: преобразование "WPARAM" в "int", возможна потеря данных
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson3\practice\practice_07.02.24\practice_07.02.24\main.cpp(79,14): warning C4244: инициализация: преобразование "WPARAM" в "int", возможна потеря данных
+  practice_07.02.24.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson3\practice\practice_07.02.24\x64\Debug\practice_07.02.24.exe
