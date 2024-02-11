@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2000
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Modeless Dialog", "Modeless Dialog\Modeless Dialog.vcxproj", "{497733F1-C149-475D-AFB9-2A9F3B9EB1D4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{497733F1-C149-475D-AFB9-2A9F3B9EB1D4}.Debug|Win32.ActiveCfg = Debug|Win32
+		{497733F1-C149-475D-AFB9-2A9F3B9EB1D4}.Debug|Win32.Build.0 = Debug|Win32
+		{497733F1-C149-475D-AFB9-2A9F3B9EB1D4}.Release|Win32.ActiveCfg = Release|Win32
+		{497733F1-C149-475D-AFB9-2A9F3B9EB1D4}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4C44AAD3-300A-49FF-A5A8-CF69CB02F334}
+	EndGlobalSection
+EndGlobal

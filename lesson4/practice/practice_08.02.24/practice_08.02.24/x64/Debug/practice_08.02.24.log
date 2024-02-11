@@ -1,0 +1,4 @@
+﻿  main.cpp
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson4\practice\practice_08.02.24\practice_08.02.24\main.cpp(28,12): warning C4244: return: преобразование "INT_PTR" в "int", возможна потеря данных
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson4\practice\practice_08.02.24\practice_08.02.24\main.cpp(127,38): warning C4244: инициализация: преобразование "LONG_PTR" в "int", возможна потеря данных
+  practice_08.02.24.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson4\practice\practice_08.02.24\x64\Debug\practice_08.02.24.exe

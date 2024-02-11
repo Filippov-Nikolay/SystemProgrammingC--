@@ -1,0 +1,3 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  UsingStatics.cpp
+  UsingStatics.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson4\examples\Dialogs\Dialogs\UsingStatics\Debug\UsingStatics.exe

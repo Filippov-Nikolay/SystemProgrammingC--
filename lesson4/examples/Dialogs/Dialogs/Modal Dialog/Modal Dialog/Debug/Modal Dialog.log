@@ -1,0 +1,4 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  Modal Dialog.cpp
+Modal Dialog.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
+  Modal Dialog.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson4\examples\Dialogs\Dialogs\Modal Dialog\Debug\Modal Dialog.exe

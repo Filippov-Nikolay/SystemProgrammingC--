@@ -1,0 +1,3 @@
+﻿  main.cpp
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson4\lesson4Project\lesson4Project-2_08.02.24\lesson4Project-2_08.02.24\main.cpp(12,9): warning C4244: return: преобразование "INT_PTR" в "int", возможна потеря данных
+  lesson4Project-2_08.02.24.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson4\lesson4Project\lesson4Project-2_08.02.24\x64\Debug\lesson4Project-2_08.02.24.exe
