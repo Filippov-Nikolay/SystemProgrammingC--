@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29009.5
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Queued_and_nonqueued_messages", "Queued_and_nonqueued_messages\Queued_and_nonqueued_messages.vcxproj", "{F99EEED6-1D27-4793-AEB1-472777486942}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F99EEED6-1D27-4793-AEB1-472777486942}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F99EEED6-1D27-4793-AEB1-472777486942}.Debug|Win32.Build.0 = Debug|Win32
+		{F99EEED6-1D27-4793-AEB1-472777486942}.Release|Win32.ActiveCfg = Release|Win32
+		{F99EEED6-1D27-4793-AEB1-472777486942}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F2246192-4E7F-4932-8A16-335FEA8FAA4E}
+	EndGlobalSection
+EndGlobal

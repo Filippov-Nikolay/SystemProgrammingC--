@@ -1,0 +1,4 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  Queued_and_nonqueued_messages.cpp
+Queued_and_nonqueued_messages.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
+  Queued_and_nonqueued_messages.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson5\examples\Queued_and_nonqueued_messages\Queued_and_nonqueued_messages\Debug\Queued_and_nonqueued_messages.exe
