@@ -23,38 +23,53 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	}
 
 	case WM_MOUSEMOVE: {
+		RECT rect;
+		GetWindowRect(hwndStatic, &rect);
+
+		POINT ptTopLeft = { rect.left, rect.top };
+		POINT ptBottomRight = { rect.right, rect.bottom };
 		POINTS points = MAKEPOINTS(lParam);
 		POINT point;
-
-		RECT rect;
-		POINT pt;
 
 		point.x = points.x;
 		point.y = points.y;
 
-		GetWindowRect(hwndStatic, &rect);
+		ScreenToClient(hwnd, &ptTopLeft);
+		ScreenToClient(hwnd, &ptBottomRight);
 
-		int xLeft = pt.x = rect.left;
-		int yTop = pt.y = rect.top;
-		int xRight = pt.x = rect.right;
-		int yBottom = pt.y = rect.bottom;
+		int yTop = ptTopLeft.y;
+		int xLeft = ptTopLeft.x;
+		int yBottom = ptBottomRight.y;
+		int xRight = ptBottomRight.x;
 
 		int range = 10;
-
-		ScreenToClient(hwnd, &pt);
-		
 
 		int width = rect.right - rect.left;
 		int height = rect.bottom - rect.top;
 
-		wsprintf(buff, _TEXT("x: %d, y: %d. RxLeft: %d, RyTop: %d. RxRight: %d, RyBottom: %d"), point.x, point.y, (xLeft - range), (yTop - range), (xRight + range), (yBottom + range));
-		//wsprintf(buff, _TEXT("x %d , y %d"), width, height);
+		wsprintf(buff, _TEXT("x: %d, y: %d. top: %d, left: %d, bottom: %d, right: %d"), 
+					point.x, point.y, yTop - range, xLeft - range, yBottom + range, xRight + range);
 		SetWindowText(hwnd, buff);
 
-		/*if ((xLeft - range) >= point.x && (yTop - range) >= point.y ||
+		if ((xLeft - range) <= point.x && (yTop - range) <= point.y &&
 			(xRight + range) >= point.x && (yBottom + range) >= point.y) {
-			DestroyWindow(hwndStatic);
-		}*/
+			// DestroyWindow(hwndStatic);
+			
+			int count = rand() % 5 + 0;
+
+			if (count == 0)
+				SetWindowPos(hwndStatic, NULL, 100, 30, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+			else if (count == 1)
+				SetWindowPos(hwndStatic, NULL, 50, 10, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+			else if (count == 2)
+				SetWindowPos(hwndStatic, NULL, 90, 60, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+			else if (count == 3)
+				SetWindowPos(hwndStatic, NULL, 320, 173, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+			else if (count == 4)
+				SetWindowPos(hwndStatic, NULL, 221, 89, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+			else if (count == 5)
+				SetWindowPos(hwndStatic, NULL, 349, 39, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
+		}
 
 		return TRUE;
 	}
