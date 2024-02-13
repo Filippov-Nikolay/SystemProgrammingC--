@@ -1,4 +1,4 @@
-#include <Windows.h>
+п»ї#include <Windows.h>
 #include "resource.h"
 #include <string>
 #include "tchar.h"
@@ -35,35 +35,35 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 				_TCHAR a[250] = _TEXT("");
 				_TCHAR b[250] = _TEXT("");
 
-				HWND hEdit1 = GetDlgItem(hwnd, IDC_EDIT1); // Получаем статик IDC_EDIT1
-				HWND hEdit2 = GetDlgItem(hwnd, IDC_EDIT2); // Получаем статик IDC_EDIT2
-				HWND hEdit3 = GetDlgItem(hwnd, IDC_EDIT3); // Получаем статик IDC_EDIT3
+				HWND hEdit1 = GetDlgItem(hwnd, IDC_EDIT1); // РџРѕР»СѓС‡Р°РµРј СЃС‚Р°С‚РёРє IDC_EDIT1
+				HWND hEdit2 = GetDlgItem(hwnd, IDC_EDIT2); // РџРѕР»СѓС‡Р°РµРј СЃС‚Р°С‚РёРє IDC_EDIT2
+				HWND hEdit3 = GetDlgItem(hwnd, IDC_EDIT3); // РџРѕР»СѓС‡Р°РµРј СЃС‚Р°С‚РёРє IDC_EDIT3
 
-				GetDlgItemText(hwnd, IDC_EDIT1, a, 250); // Получаем текст из IDC_EDIT1
-				GetDlgItemText(hwnd, IDC_EDIT2, b, 250); // Получаем текст из IDC_EDIT2
+				GetDlgItemText(hwnd, IDC_EDIT1, a, 250); // РџРѕР»СѓС‡Р°РµРј С‚РµРєСЃС‚ РёР· IDC_EDIT1
+				GetDlgItemText(hwnd, IDC_EDIT2, b, 250); // РџРѕР»СѓС‡Р°РµРј С‚РµРєСЃС‚ РёР· IDC_EDIT2
 
-				int ia = _ttoi(a); // Преобразование из текста в число
-				int ib = _ttoi(b); // Преобразование из текста в число
+				int ia = _ttoi(a); // РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РёР· С‚РµРєСЃС‚Р° РІ С‡РёСЃР»Рѕ
+				int ib = _ttoi(b); // РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РёР· С‚РµРєСЃС‚Р° РІ С‡РёСЃР»Рѕ
 
-				if (_tcslen(a) == 0 || _tcslen(b) == 0 || (_tcscmp(b, _T("0")) == 0 && IsDlgButtonChecked(hwnd, IDC_RADIO4) == BST_CHECKED)) { // Проверка на пустату и на ноль (b)
+				if (_tcslen(a) == 0 || _tcslen(b) == 0 || (_tcscmp(b, _T("0")) == 0 && IsDlgButtonChecked(hwnd, IDC_RADIO4) == BST_CHECKED)) { // РџСЂРѕРІРµСЂРєР° РЅР° РїСѓСЃС‚Р°С‚Сѓ Рё РЅР° РЅРѕР»СЊ (b)
 					SendMessage(hEdit3, WM_SETTEXT, 0, (LPARAM)_TEXT("NULL"));
 				}
 				else {
 					if (IsDlgButtonChecked(hwnd, IDC_RADIO1) == BST_CHECKED) {
 						wsprintf(a, _T("%d"), ia + ib);
-						SendMessage(hEdit3, WM_SETTEXT, 0, (LPARAM)a); // В IDC_EDIT3 помещаем текст из buff(IDC_EDIT1)
+						SendMessage(hEdit3, WM_SETTEXT, 0, (LPARAM)a); // Р’ IDC_EDIT3 РїРѕРјРµС‰Р°РµРј С‚РµРєСЃС‚ РёР· buff(IDC_EDIT1)
 					}
 					else if (IsDlgButtonChecked(hwnd, IDC_RADIO2) == BST_CHECKED) {
 						wsprintf(a, _T("%d"), ia - ib);
-						SendMessage(hEdit3, WM_SETTEXT, 0, (LPARAM)a); // В IDC_EDIT3 помещаем текст из buff(IDC_EDIT1)
+						SendMessage(hEdit3, WM_SETTEXT, 0, (LPARAM)a); // Р’ IDC_EDIT3 РїРѕРјРµС‰Р°РµРј С‚РµРєСЃС‚ РёР· buff(IDC_EDIT1)
 					}
 					else if (IsDlgButtonChecked(hwnd, IDC_RADIO3) == BST_CHECKED) {
 						wsprintf(a, _T("%d"), ia * ib);
-						SendMessage(hEdit3, WM_SETTEXT, 0, (LPARAM)a); // В IDC_EDIT3 помещаем текст из buff(IDC_EDIT1)
+						SendMessage(hEdit3, WM_SETTEXT, 0, (LPARAM)a); // Р’ IDC_EDIT3 РїРѕРјРµС‰Р°РµРј С‚РµРєСЃС‚ РёР· buff(IDC_EDIT1)
 					}
 					else if (IsDlgButtonChecked(hwnd, IDC_RADIO4) == BST_CHECKED) {
 						wsprintf(a, _T("%d"), ia / ib);
-						SendMessage(hEdit3, WM_SETTEXT, 0, (LPARAM)a); // В IDC_EDIT3 помещаем текст из buff(IDC_EDIT1)
+						SendMessage(hEdit3, WM_SETTEXT, 0, (LPARAM)a); // Р’ IDC_EDIT3 РїРѕРјРµС‰Р°РµРј С‚РµРєСЃС‚ РёР· buff(IDC_EDIT1)
 					}
 				}
 			}
