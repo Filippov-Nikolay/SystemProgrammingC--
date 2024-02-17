@@ -1,0 +1,4 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  ProgressControlDlg.cpp
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson8\examples\Menu\ProgressControl\ProgressControl\ProgressControlDlg.cpp(17,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  ProgressControl.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson8\examples\Menu\ProgressControl\Debug\ProgressControl.exe

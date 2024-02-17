@@ -10,15 +10,30 @@ using namespace std;
 
 HINSTANCE hInstance;
 const int numberButtons = 9;
-int countMove = 0;
+int gameResult = 0;
+int countMove = numberButtons;
 bool fFirstMove = true;
-bool arrayMove[numberButtons] = {true};
-int arrayMovePc[numberButtons] = {-1};
+bool fStartPlayBtn = true;
+bool stopPc = false;
+bool stopPlayer = false;
+bool arrayMove[numberButtons] = { true, true, true,
+								  true, true, true,
+								  true, true, true };
+//int arrayMovePc[numberButtons] = {-1};
+
+// player = 1
+// PC = 0
+int arrayField[numberButtons] = { -1, -1, -1,
+								  -1, -1, -1,
+								  -1, -1, -1 };
 HWND gameFieldButtons[numberButtons]{ 0 };
 HBITMAP hBitmapCross;
 
 
 INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+
+void ComputerMove(HWND);
+int WhoHasWon(HWND, bool);
 
 int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nShowCmd) {
 	::hInstance = hInstance;
@@ -34,6 +49,8 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 			return TRUE;
 		}
 		case WM_INITDIALOG: {
+			SendDlgItemMessage(hwnd, IDC_RADIO1, BM_SETCHECK, WPARAM(BST_CHECKED), 0);
+
 			gameFieldButtons[0] = GetDlgItem(hwnd, IDC_BUTTON1);
 			gameFieldButtons[1] = GetDlgItem(hwnd, IDC_BUTTON2);
 			gameFieldButtons[2] = GetDlgItem(hwnd, IDC_BUTTON3);
@@ -52,9 +69,10 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 			// SendDlgItemMessage(hwnd, IDC_BUTTON2, BM_SETIMAGE, IMAGE_ICON, (LPARAM)hBitmapCross);
 		}
 		case WM_COMMAND: {
-			if (LOWORD(wParam) == IDC_BUTTON10 && HIWORD(wParam) == BN_CLICKED) {
+			if (LOWORD(wParam) == IDC_BUTTON10 && HIWORD(wParam) == BN_CLICKED && fStartPlayBtn) {
 				for (int i = 0; i < numberButtons; i++) {
 					EnableWindow(gameFieldButtons[i], TRUE);
+					SendMessage(gameFieldButtons[i], WM_CLEAR, 0, 0);
 
 					//if (i % 2 == 0) {
 					//	SendMessage(gameFieldButtons[i], WM_SETTEXT, 0, (LPARAM)_TEXT("X"));
@@ -64,68 +82,99 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 					//	SendMessage(gameFieldButtons[i], WM_SETTEXT, 0, (LPARAM)_TEXT("0"));
 					//}
 				}
+				LRESULT result = SendDlgItemMessage(hwnd, IDC_RADIO1, BM_GETCHECK, 0, 0);
+
+				result == BST_CHECKED ? fFirstMove = true : fFirstMove = false;
+
+				if (!fFirstMove)
+					ComputerMove(hwnd);
+
+				fStartPlayBtn = false;
 			}
-			else {
-				for (int i = 0; i < numberButtons; i++) {
-					if (LOWORD(wParam) == IDC_BUTTON1 + i && HIWORD(wParam) == BN_CLICKED) {
-						SendMessage(gameFieldButtons[i], WM_SETTEXT, 0, (LPARAM)_TEXT("X"));
-						EnableWindow(gameFieldButtons[i], FALSE);
-						arrayMove[i] = false;
+			else if (LOWORD(wParam) <= IDC_BUTTON9 && HIWORD(wParam) == BN_CLICKED) {
+				if (!stopPlayer) {
+					for (int i = 0; i < numberButtons; i++) {
+						if (LOWORD(wParam) == IDC_BUTTON1 + i && HIWORD(wParam) == BN_CLICKED) {
+							arrayMove[i] = false;
+							arrayField[i] = 1;
+							countMove--;
+							SendMessage(gameFieldButtons[i], WM_SETTEXT, 0, (LPARAM)_TEXT("X"));
+							EnableWindow(gameFieldButtons[i], FALSE);
+						}
 					}
+					gameResult = WhoHasWon(hwnd, true);
+					gameResult == -1 ? NULL : gameResult == 1 ? stopPc = true : gameResult == 0 ? stopPlayer = false : NULL;
+				}
+					
+				if (!stopPc) {
+					ComputerMove(hwnd);
+					gameResult = WhoHasWon(hwnd, false);
+					gameResult == -1 ? NULL : gameResult == 1 ? stopPc = false : gameResult == 0 ? stopPlayer = true : NULL;
 				}
 
-				_TCHAR buff[250] = _TEXT("");
 
+				if (stopPlayer || stopPc) {
+					for (int i = 0; i < numberButtons; i++) {
+						EnableWindow(gameFieldButtons[i], FALSE);
+					}
+				}
 				
+				if (countMove == 0 || stopPlayer || stopPc) {
+					int msgboxID = MessageBox(
+						NULL,
+						(LPCWSTR)_TEXT("Хотите сыграть ещё?"),
+						(LPCWSTR)_TEXT("Хотите сыграть ещё?"),
+						MB_ICONQUESTION | MB_YESNO);
 
-				time(NULL);
-				int move = 0;
-				bool f = true;
+					if (msgboxID == IDYES) {
+						stopPlayer = stopPc = false;
 
-				// true, true, true, true
-				// true, true, false, true
+						for (int i = 0; i < numberButtons; i++) {
+							SendMessage(gameFieldButtons[i], WM_SETTEXT, 0, (LPARAM)_TEXT(""));
+							EnableWindow(gameFieldButtons[i], FALSE);
+							fStartPlayBtn = true;
+							countMove = numberButtons;
+							gameResult = 0;
 
-				do {
-					move = rand() % 8 + 0;
-					arrayMove[move] = false;
-					arrayMovePc[countMove] = move;
-
-					if (countMove != 0) {
-						for (int i = 0; i < countMove; i++) {
-							if (move == arrayMovePc[i] && arrayMove[arrayMovePc[i]]) {
-								f = true;
-								break;
-							}
-							else {
-								f = false;
-								countMove++;
+							for (int j = 0; j < numberButtons; j++) {
+								arrayField[j] = -1;
+								arrayMove[j] = true;
 							}
 						}
 					}
-				} while (f);
-
-				/*while (f) {
-					move = rand() % 8 + 0;
-					arrayMove[move] = false;
-					arrayMovePc[countMove] = move;
-
-					if (!arrayMove[move] && arrayMove[arrayMovePc[countMove]] != move) {
-						countMove++;
-						break;
-					}
-				}*/
-				
-
-				wsprintf(buff, _TEXT("%d"), move);
-				SetWindowText(hwnd, buff);
-
-				
-				for (int i = 0; i < numberButtons; i++) {
-					if (move == IDC_BUTTON1 + i && HIWORD(wParam) == BN_CLICKED) {
-						SendMessage(gameFieldButtons[i], WM_SETTEXT, 0, (LPARAM)_TEXT("O"));
-						EnableWindow(gameFieldButtons[i], FALSE);
+					else {
+						EndDialog(hwnd, 0);
 					}
 				}
+				
+
+				
+
+				// true, true, true, true
+				// 
+				// arrayMove = {
+				// true, true, true
+				// true, true, true
+				// true, true, true }
+
+
+				
+
+				/*if (countMove != numberButtons) {
+					do {
+						move = rand() % numberButtons;
+						f = false;
+
+						for (int j = 0; j < countMove; j++) {
+							if (arrayMovePc[j] == move) {
+								f = true;
+								break;
+							}
+						}
+					} while (f);
+
+					arrayMovePc[countMove++] = move;
+				}*/	
 			}
 
 
@@ -142,4 +191,212 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	}
 
 	return FALSE;
+}
+
+int WhoHasWon(HWND hwnd, bool isPlayer) {
+	// player = 1
+	// PC = 0
+
+	bool fWin = false;
+	int countFigure = -1;
+	/*bool isPlayer = true;*/
+
+	for (int i = 0; i < 3; i++) {
+		if (arrayField[i] == (isPlayer ? 1 : 0)) {
+			countFigure++;
+		}
+
+		if (countFigure == 2) {
+			MessageBox(hwnd, _TEXT("WIN"), isPlayer ? _TEXT("Player") : _TEXT("PC"), 0);
+			fWin = true;
+
+			if (fWin) {
+				return isPlayer ? 1 : 0;
+			}
+		}
+	}
+	countFigure = -1;
+
+	for (int i = 3; i < 6; i++) {
+		if (arrayField[i] == (isPlayer ? 1 : 0)) {
+			countFigure++;
+		}
+
+		if (countFigure == 2) {
+			MessageBox(hwnd, _TEXT("WIN"), isPlayer ? _TEXT("Player") : _TEXT("PC"), 0);
+			fWin = true;
+
+			if (fWin) {
+				return isPlayer ? 1 : 0;
+			}
+		}
+	}
+	countFigure = -1;
+
+	for (int i = 6; i < 9; i++) {
+		if (arrayField[i] == (isPlayer ? 1 : 0)) {
+			countFigure++;
+		}
+
+		if (countFigure == 2) {
+			MessageBox(hwnd, _TEXT("WIN"), isPlayer ? _TEXT("Player") : _TEXT("PC"), 0);
+			fWin = true;
+
+			if (fWin) {
+				return isPlayer ? 1 : 0;
+			}
+		}
+	}
+	countFigure = -1;
+
+
+
+	for (int i = 0; i < 7; i++) {
+		if (arrayField[i] == (isPlayer ? 1 : 0) && (i == 0 || i == 3 || i == 6)) {
+			countFigure++;
+		}
+
+		if (countFigure == 2) {
+			MessageBox(hwnd, _TEXT("WIN"), isPlayer ? _TEXT("Player") : _TEXT("PC"), 0);
+			fWin = true;
+
+			if (fWin) {
+				return isPlayer ? 1 : 0;
+			}
+		}
+	}
+	countFigure = -1;
+
+	for (int i = 1; i < 8; i++) {
+		if (arrayField[i] == (isPlayer ? 1 : 0) && (i == 1 || i == 4 || i == 7)) {
+			countFigure++;
+		}
+
+		if (countFigure == 2) {
+			MessageBox(hwnd, _TEXT("WIN"), isPlayer ? _TEXT("Player") : _TEXT("PC"), 0);
+			fWin = true;
+
+			if (fWin) {
+				return isPlayer ? 1 : 0;
+			}
+		}
+	}
+	countFigure = -1;
+
+	for (int i = 2; i < 9; i++) {
+		if (arrayField[i] == (isPlayer ? 1 : 0) && (i == 2 || i == 5 || i == 8)) {
+			countFigure++;
+		}
+
+		if (countFigure == 2) {
+			MessageBox(hwnd, _TEXT("WIN"), isPlayer ? _TEXT("Player") : _TEXT("PC"), 0);
+			fWin = true;
+
+			if (fWin) {
+				return isPlayer ? 1 : 0;
+			}
+		}
+	}
+	countFigure = -1;
+
+
+
+	for (int i = 0; i < 9; i++) {
+		if (arrayField[i] == (isPlayer ? 1 : 0) && (i == 0 || i == 4 || i == 8)) {
+			countFigure++;
+		}
+
+		if (countFigure == 2) {
+			MessageBox(hwnd, _TEXT("WIN"), isPlayer ? _TEXT("Player") : _TEXT("PC"), 0);
+			fWin = true;
+
+			if (fWin) {
+				return isPlayer ? 1 : 0;
+			}
+		}
+	}
+	countFigure = -1;
+
+	for (int i = 0; i < 9; i++) {
+		if (arrayField[i] == (isPlayer ? 1 : 0) && (i == 2 || i == 4 || i == 6)) {
+			countFigure++;
+		}
+
+		if (countFigure == 2) {
+			MessageBox(hwnd, _TEXT("WIN"), isPlayer ? _TEXT("Player") : _TEXT("PC"), 0);
+			fWin = true;
+
+			if (fWin) {
+				return isPlayer ? 1 : 0;
+			}
+		}
+	}
+	countFigure = -1;
+
+	if (countMove == 0)
+		MessageBox(hwnd, _TEXT("DEAD HEAT"), _TEXT("Player & PC"), 0);
+
+	return -1;
+	/*for (int i = 0; i < 3; i++) {
+		if (arrayField[i] == 1 && i == 2) {
+			MessageBox(hwnd, _TEXT("WIN"), _TEXT("Player"), 0);
+		}
+		else
+			return;
+	}*/
+	
+}
+void ComputerMove(HWND hwnd) {
+	_TCHAR buff[250] = _TEXT("");
+
+	srand(time(NULL));
+	int move = 0;
+	bool f = true;
+	countMove--;
+	/*do {
+		move = rand() % 9 + 0;
+
+		if (arrayMove[move]) {
+			f = false;
+			arrayMove[move] = false;
+		}
+		for (int i = 0; i < numberButtons; i++) {
+			if (!arrayMove[i] && numberButtons == i)
+				fAll = false;
+		}
+	} while (f && fAll);*/
+
+	if (countMove >= 0) {
+		do {
+			move = rand() % 9;
+
+			if (arrayMove[move]) {
+				arrayMove[move] = false;
+				arrayField[move] = 0;
+				f = false;
+			}
+
+
+		} while (f);
+
+		for (int i = 0; i < numberButtons; i++) {
+			if (move == i) {
+				SendMessage(gameFieldButtons[i], WM_SETTEXT, 0, (LPARAM)_TEXT("O"));
+				EnableWindow(gameFieldButtons[i], FALSE);
+			}
+		}
+	}
+	
+
+	/*wsprintf(buff, _TEXT("%d. %d, %d, %d, %d, %d, %d, %d, %d, %d"), move,
+		arrayMove[0],
+		arrayMove[1],
+		arrayMove[2],
+		arrayMove[3],
+		arrayMove[4],
+		arrayMove[5],
+		arrayMove[6],
+		arrayMove[7],
+		arrayMove[8]);
+	SetWindowText(hwnd, buff);*/
 }

@@ -1,0 +1,3 @@
+﻿  RadioButton.cpp
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson6\examples\RadioButton\RadioButton\RadioButton\RadioButton.cpp(9,9): warning C4244: return: преобразование "INT_PTR" в "int", возможна потеря данных
+  RadioButton.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson6\examples\RadioButton\RadioButton\x64\Debug\RadioButton.exe

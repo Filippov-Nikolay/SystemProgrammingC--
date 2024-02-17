@@ -1,0 +1,134 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "windows.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Ukrainian (Ukraine) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_UKR)
+LANGUAGE LANG_UKRAINIAN, SUBLANG_DEFAULT
+#pragma code_page(1251)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""windows.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_DIALOG1 DIALOGEX 0, 0, 317, 184
+STYLE DS_SETFONT | DS_FIXEDSYS | DS_CENTER | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Текстовый редактор"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    EDITTEXT        IDC_EDIT1,7,7,303,170,ES_MULTILINE | ES_AUTOHSCROLL | ES_WANTRETURN
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 310
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 177
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU2 MENU
+BEGIN
+    POPUP "&Правка"
+    BEGIN
+        MENUITEM "Отменить",                    ID_UNDO
+        MENUITEM "Вырезать",                    ID_CUT
+        MENUITEM "Копировать",                  ID_COPY
+        MENUITEM "Вставить ",                   ID_PASTE
+        MENUITEM "Удалить",                     ID_DEL
+        MENUITEM "Выделить всё",                ID_SELECTALL
+    END
+    POPUP "&Вид"
+    BEGIN
+        MENUITEM "Строка состояния",            ID_STATUSBAR, CHECKED
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE
+BEGIN
+    ID_UNDO                 "Отмена последнего выполненного действия"
+    ID_CUT                  "Удаление выделенного фрагмента в буфер обмена"
+    ID_COPY                 "Копирование выделенного фрагмента в буфер обмена"
+    ID_PASTE                "Вставка в документ содержимого буфера обмена"
+    ID_DEL                  "Удаление выделенного фрагмента"
+    ID_SELECTALL            "Выделение всего документа"
+    ID_STATUSBAR            "Вывод и скрытие строки состояния"
+END
+
+#endif    // Ukrainian (Ukraine) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
