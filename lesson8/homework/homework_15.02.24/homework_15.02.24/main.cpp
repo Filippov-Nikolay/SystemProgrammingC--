@@ -1,4 +1,4 @@
-#include <Windows.h>
+п»ї#include <Windows.h>
 #include "resource.h"
 #include <string>
 #include "tchar.h"
@@ -48,15 +48,15 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 			return TRUE;
 		}
 		case WM_INITDIALOG: {
-			// Устанавливаем заголовок
+			// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р·Р°РіРѕР»РѕРІРѕРє
 			SetWindowText(hwnd, _TEXT("GAME"));
 
-			// Инициализируем кнопки
+			// РРЅРёС†РёР°Р»РёР·РёСЂСѓРµРј РєРЅРѕРїРєРё
 			for (int i = 0; i < numberButtons; i++) {
 				dlgButtons[i] = GetDlgItem(hwnd, buttonsId[i]);
 				SendMessage(dlgButtons[i], WM_SETTEXT, 0, LPARAM(_TEXT("")));
 
-				// Отключаем кнопки
+				// РћС‚РєР»СЋС‡Р°РµРј РєРЅРѕРїРєРё
 				EnableWindow(dlgButtons[i], FALSE);
 			}
 
@@ -65,12 +65,12 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 			hList1 = GetDlgItem(hwnd, IDC_LIST1);
 			hProgress1 = GetDlgItem(hwnd, IDC_PROGRESS1);
 
-			SendMessage(hSpin1, UDM_SETRANGE32, 0, 100); // Установим диапазон счетчика 
+			SendMessage(hSpin1, UDM_SETRANGE32, 0, 100); // РЈСЃС‚Р°РЅРѕРІРёРј РґРёР°РїР°Р·РѕРЅ СЃС‡РµС‚С‡РёРєР° 
 
-			SendMessage(hProgress1, PBM_SETRANGE, 0, MAKELPARAM(0, 100)); // Установка интервала для индикатора 
-			SendMessage(hProgress1, PBM_SETPOS, 0, 0); // Установка текущей позиции индикатора
+			SendMessage(hProgress1, PBM_SETRANGE, 0, MAKELPARAM(0, 100)); // РЈСЃС‚Р°РЅРѕРІРєР° РёРЅС‚РµСЂРІР°Р»Р° РґР»СЏ РёРЅРґРёРєР°С‚РѕСЂР° 
+			SendMessage(hProgress1, PBM_SETPOS, 0, 0); // РЈСЃС‚Р°РЅРѕРІРєР° С‚РµРєСѓС‰РµР№ РїРѕР·РёС†РёРё РёРЅРґРёРєР°С‚РѕСЂР°
 
-			// Установливаем приятеля
+			// РЈСЃС‚Р°РЅРѕРІР»РёРІР°РµРј РїСЂРёСЏС‚РµР»СЏ
 			SendMessage(hSpin1, UDM_SETBUDDY, WPARAM(hEdit1), 0);
 
 			return TRUE;
@@ -79,10 +79,10 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 			if (LOWORD(wParam) == IDC_NEWGAME && HIWORD(wParam) == BN_CLICKED) {
 				_TCHAR buff[250] = _TEXT("");
 
-				// Получаем значение таймера
+				// РџРѕР»СѓС‡Р°РµРј Р·РЅР°С‡РµРЅРёРµ С‚Р°Р№РјРµСЂР°
 				SendMessage(hEdit1, WM_GETTEXT, sizeof(buff) / sizeof(TCHAR), LPARAM(buff));
 
-				// Преобразование buff в int
+				// РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ buff РІ int
 				countTimer = timer = _ttoi(buff);
 
 				if (countTimer == 0) {
@@ -99,14 +99,14 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 
 				srand(time(NULL));
 
-				// Очистка вектора
+				// РћС‡РёСЃС‚РєР° РІРµРєС‚РѕСЂР°
 				numbers.clear();
 
 				for (int i = 0; i < numberButtons; i++) {
-					// Включаем кнопки
+					// Р’РєР»СЋС‡Р°РµРј РєРЅРѕРїРєРё
 					EnableWindow(dlgButtons[i], TRUE);
 
-					// Очищаем кнопки
+					// РћС‡РёС‰Р°РµРј РєРЅРѕРїРєРё
 					SendMessage(dlgButtons[i], WM_SETTEXT, 0, LPARAM(_TEXT("")));
 
 					numbers.push_back(rand() % (endOfRange - startOfRange) + startOfRange);
@@ -116,48 +116,48 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 					SendMessage(dlgButtons[i], WM_SETTEXT, 0, LPARAM(buff));
 				}
 
-				// Сортировка вектора по возрастанию
+				// РЎРѕСЂС‚РёСЂРѕРІРєР° РІРµРєС‚РѕСЂР° РїРѕ РІРѕР·СЂР°СЃС‚Р°РЅРёСЋ
 				std::sort(numbers.begin(), numbers.end());
 
-				// Очищаем список
+				// РћС‡РёС‰Р°РµРј СЃРїРёСЃРѕРє
 				SendMessage(hList1, LB_RESETCONTENT, 0, 0);
 
-				// Вывод массива в List
+				// Р’С‹РІРѕРґ РјР°СЃСЃРёРІР° РІ List
 				/*for (int i = 0; i < numberButtons; i++) {
 					wsprintf(buff, _TEXT("%d"), numbers[i]);
 					SendMessage(hList1, LB_ADDSTRING, 0, LPARAM(buff));
 				}*/
 				
-				// Запускаем таймер
+				// Р—Р°РїСѓСЃРєР°РµРј С‚Р°Р№РјРµСЂ
 				SetTimer(hwnd, 1, 1000, NULL);
 
-				// Установка индикатора на 0
+				// РЈСЃС‚Р°РЅРѕРІРєР° РёРЅРґРёРєР°С‚РѕСЂР° РЅР° 0
 				SendMessage(hProgress1, PBM_SETPOS, 0, 0);
 
-				// Установка значения таймера в заголовок окна
+				// РЈСЃС‚Р°РЅРѕРІРєР° Р·РЅР°С‡РµРЅРёСЏ С‚Р°Р№РјРµСЂР° РІ Р·Р°РіРѕР»РѕРІРѕРє РѕРєРЅР°
 				wsprintf(buff, _TEXT("%d"), countTimer);
 				SetWindowText(hwnd, buff);
 
 				oneStep = true;
 			}
 			else if (LOWORD(wParam) >= IDC_BUTTON1 && LOWORD(wParam) <= IDC_BUTTON16 && HIWORD(wParam) == BN_CLICKED) {
-				// ID нажатой кнопки
+				// ID РЅР°Р¶Р°С‚РѕР№ РєРЅРѕРїРєРё
 				int buttonID = LOWORD(wParam);
 
-				// Дескрпитор кнопки
+				// Р”РµСЃРєСЂРїРёС‚РѕСЂ РєРЅРѕРїРєРё
 				HWND hButton = GetDlgItem(hwnd, buttonID);
 
-				// Помещаем значение кнопки в buff
+				// РџРѕРјРµС‰Р°РµРј Р·РЅР°С‡РµРЅРёРµ РєРЅРѕРїРєРё РІ buff
 				_TCHAR buff[250] = _TEXT("");
 				GetWindowText(hButton, buff, sizeof(buff) / sizeof(_TCHAR));
 
-				// Преобразование buff в int
+				// РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ buff РІ int
 				int value = _ttoi(buff);
 
 				//wsprintf(buff, _TEXT("%d. %d"), value, numbers[countMove]);
 				//SetWindowText(hwnd, buff);
 
-				// Сравниваем значение нажатой кнопки и элемента массива
+				// РЎСЂР°РІРЅРёРІР°РµРј Р·РЅР°С‡РµРЅРёРµ РЅР°Р¶Р°С‚РѕР№ РєРЅРѕРїРєРё Рё СЌР»РµРјРµРЅС‚Р° РјР°СЃСЃРёРІР°
 				if (value == numbers[countMove]) {
 					countMove++;
 
@@ -166,9 +166,9 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 					SendMessage(hList1, LB_ADDSTRING, 0, LPARAM(buff));
 				}
 
-				// Проверка на завершение игры: все ли кнопки были правильно нажаты
+				// РџСЂРѕРІРµСЂРєР° РЅР° Р·Р°РІРµСЂС€РµРЅРёРµ РёРіСЂС‹: РІСЃРµ Р»Рё РєРЅРѕРїРєРё Р±С‹Р»Рё РїСЂР°РІРёР»СЊРЅРѕ РЅР°Р¶Р°С‚С‹
 				if (countMove == numberButtons) {
-					// Останавливаем таймер
+					// РћСЃС‚Р°РЅР°РІР»РёРІР°РµРј С‚Р°Р№РјРµСЂ
 					KillTimer(hwnd, 1);
 
 					MessageBox(hwnd, _TEXT("You WIN!"), _TEXT("Game"), MB_ICONINFORMATION);
@@ -180,12 +180,12 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 			countTimer--;
 
 			if (countTimer + 1 == 0) {
-				// Останавливаем таймер
+				// РћСЃС‚Р°РЅР°РІР»РёРІР°РµРј С‚Р°Р№РјРµСЂ
 				KillTimer(hwnd, 1);
 
 				MessageBox(hwnd, _TEXT("You lose!("), _TEXT("Game"), MB_ICONINFORMATION);
 
-				// Отключаем кнопки
+				// РћС‚РєР»СЋС‡Р°РµРј РєРЅРѕРїРєРё
 				for (int i = 0; i < numberButtons; i++) {
 					EnableWindow(dlgButtons[i], FALSE);
 				}
@@ -201,18 +201,18 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 			if (oneStep) {
 				oneStep = false;
 
-				// Вычисляем остаток
+				// Р’С‹С‡РёСЃР»СЏРµРј РѕСЃС‚Р°С‚РѕРє
 				int remainder = 100 % timer;
 
-				// Добавляем остаток к индикатору выполнения
+				// Р”РѕР±Р°РІР»СЏРµРј РѕСЃС‚Р°С‚РѕРє Рє РёРЅРґРёРєР°С‚РѕСЂСѓ РІС‹РїРѕР»РЅРµРЅРёСЏ
 				SendMessage(hProgress1, PBM_SETSTEP, remainder, 0);
 				SendMessage(hProgress1, PBM_STEPIT, 0, 0);
 
-				// Устанавливаем шаг инкремента равным timer
+				// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј С€Р°Рі РёРЅРєСЂРµРјРµРЅС‚Р° СЂР°РІРЅС‹Рј timer
 				SendMessage(hProgress1, PBM_SETSTEP, 100 / timer, 0);
 			}
 
-			// Изменяем текущую позицию индикатора путём прибавления шага
+			// РР·РјРµРЅСЏРµРј С‚РµРєСѓС‰СѓСЋ РїРѕР·РёС†РёСЋ РёРЅРґРёРєР°С‚РѕСЂР° РїСѓС‚С‘Рј РїСЂРёР±Р°РІР»РµРЅРёСЏ С€Р°РіР°
 			SendMessage(hProgress1, PBM_STEPIT, 0, 0);
 
 			return TRUE;
