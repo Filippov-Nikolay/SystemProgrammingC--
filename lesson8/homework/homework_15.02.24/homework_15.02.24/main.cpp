@@ -20,7 +20,10 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 const int numberButtons = 16;
 int countMove = 0;
 int timer = 0;
+int tempTimer = 0;
 int countTimer = 0;
+int remainderTimer = 0;
+bool oneStep = true;
 // idButtons
 int buttonsId[numberButtons] = { IDC_BUTTON1, IDC_BUTTON2, IDC_BUTTON3, IDC_BUTTON4, 
 							   IDC_BUTTON5, IDC_BUTTON6, IDC_BUTTON7, IDC_BUTTON8, 
@@ -67,7 +70,7 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 			SendMessage(hProgress1, PBM_SETRANGE, 0, MAKELPARAM(0, 100)); // Установка интервала для индикатора 
 			SendMessage(hProgress1, PBM_SETPOS, 0, 0); // Установка текущей позиции индикатора
 
-			// установим приятеля
+			// Установливаем приятеля
 			SendMessage(hSpin1, UDM_SETBUDDY, WPARAM(hEdit1), 0);
 
 			return TRUE;
@@ -134,6 +137,8 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 				// Установка значения таймера в заголовок окна
 				wsprintf(buff, _TEXT("%d"), countTimer);
 				SetWindowText(hwnd, buff);
+
+				oneStep = true;
 			}
 			else if (LOWORD(wParam) >= IDC_BUTTON1 && LOWORD(wParam) <= IDC_BUTTON16 && HIWORD(wParam) == BN_CLICKED) {
 				// ID нажатой кнопки
@@ -174,31 +179,42 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 		case WM_TIMER: {
 			countTimer--;
 
-			switch (wParam) {
-				case 1: {
-					if (countTimer + 1 == 0) {
-						// Останавливаем таймер
-						KillTimer(hwnd, 1);
+			if (countTimer + 1 == 0) {
+				// Останавливаем таймер
+				KillTimer(hwnd, 1);
 
-						MessageBox(hwnd, _TEXT("You lose!("), _TEXT("Game"), MB_ICONINFORMATION);
+				MessageBox(hwnd, _TEXT("You lose!("), _TEXT("Game"), MB_ICONINFORMATION);
 
-						// Отключаем кнопки
-						for (int i = 0; i < numberButtons; i++) {
-							EnableWindow(dlgButtons[i], FALSE);
-						}
-					}
-					else {
-						_TCHAR buff[250] = _TEXT("");
-
-						wsprintf(buff, _TEXT("%d"), countTimer);
-						SetWindowText(hwnd, buff);
-												
-						SendMessage(hProgress1, PBM_SETSTEP, 100 / timer, 0); // Установка шага приращения  индикатора 
-						SendMessage(hProgress1, PBM_STEPIT, 0, 0); // Изменение текущей позиции индикатора путём прибавления шага
-					}
-					return TRUE;
+				// Отключаем кнопки
+				for (int i = 0; i < numberButtons; i++) {
+					EnableWindow(dlgButtons[i], FALSE);
 				}
+
+				return TRUE;
 			}
+
+			_TCHAR buff[250] = _TEXT("");
+
+			wsprintf(buff, _TEXT("%d"), countTimer);
+			SetWindowText(hwnd, buff);
+
+			if (oneStep) {
+				oneStep = false;
+
+				// Вычисляем остаток
+				int remainder = 100 % timer;
+
+				// Добавляем остаток к индикатору выполнения
+				SendMessage(hProgress1, PBM_SETSTEP, remainder, 0);
+				SendMessage(hProgress1, PBM_STEPIT, 0, 0);
+
+				// Устанавливаем шаг инкремента равным timer
+				SendMessage(hProgress1, PBM_SETSTEP, 100 / timer, 0);
+			}
+
+			// Изменяем текущую позицию индикатора путём прибавления шага
+			SendMessage(hProgress1, PBM_STEPIT, 0, 0);
+
 			return TRUE;
 		}
 	}
