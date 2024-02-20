@@ -1,0 +1,10 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  PriorityDlg.cpp
+  Priority.cpp
+  Создание кода...
+Priority.rc(65): warning RC2182: duplicate dialog control ID 1010
+  
+Priority.rc(68): warning RC2182: duplicate dialog control ID 1010
+  
+Priority.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
+  Priority.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson9\examples\Многопоточность\Source\Priority\Debug\Priority.exe

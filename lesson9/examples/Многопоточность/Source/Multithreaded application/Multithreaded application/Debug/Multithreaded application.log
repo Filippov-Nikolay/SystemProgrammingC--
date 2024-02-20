@@ -1,0 +1,6 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  MultithreadDlg.cpp
+  Multithread.cpp
+  Создание кода...
+Multithread.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
+  Multithreaded application.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson9\examples\Многопоточность\Source\Multithreaded application\Debug\Multithreaded application.exe
