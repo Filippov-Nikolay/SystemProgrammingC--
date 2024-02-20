@@ -5,6 +5,12 @@
 
 HINSTANCE hInstance;
 
+DWORD WINAPI Thread1(LPVOID lp);
+DWORD WINAPI Thread2(LPVOID lp);
+DWORD WINAPI Thread3(LPVOID lp);
+
+bool isPrime(int);
+
 INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 
 // index
@@ -21,6 +27,8 @@ HWND hLists[numberList] = {};
 // Button
 int hButtonIds[numberButton] = { IDC_BUTTON1, IDC_BUTTON2, IDC_BUTTON3, IDC_BUTTON4, IDC_BUTTON5, IDC_BUTTON6 };
 HWND hButtons[numberButton] = {};
+
+HANDLE hThread1, hThread2, hThread3;
 
 int WINAPI wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine, _In_ int nShowCmd) {
 	::hInstance = hInstance;
@@ -40,10 +48,36 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 				hButtons[i] = GetDlgItem(hwnd, hButtonIds[i]);
 			}
 
+			hThread1 = CreateThread(NULL, 0, Thread1, hLists[0], CREATE_SUSPENDED, NULL);
+			hThread2 = CreateThread(NULL, 0, Thread2, hLists[1], CREATE_SUSPENDED, NULL);
+			hThread3 = CreateThread(NULL, 0, Thread3, hLists[2], CREATE_SUSPENDED, NULL);
+
 			return TRUE;
 		}
 		case WM_COMMAND: {
+			// button1/2
+			if (IDC_BUTTON1 == LOWORD(wParam) && HIWORD(wParam) == BN_CLICKED) {
+				ResumeThread(hThread1);
+			}
+			else if (IDC_BUTTON2 == LOWORD(wParam) && HIWORD(wParam) == BN_CLICKED) {
+				SuspendThread(hThread1);
+			}
 
+			// button3/4
+			else if (IDC_BUTTON3 == LOWORD(wParam) && HIWORD(wParam) == BN_CLICKED) {
+				ResumeThread(hThread2);
+			}
+			else if (IDC_BUTTON4 == LOWORD(wParam) && HIWORD(wParam) == BN_CLICKED) {
+				SuspendThread(hThread2);
+			}
+
+			// button5/6
+			else if (IDC_BUTTON5 == LOWORD(wParam) && HIWORD(wParam) == BN_CLICKED) {
+				ResumeThread(hThread3);
+			}
+			else if (IDC_BUTTON6 == LOWORD(wParam) && HIWORD(wParam) == BN_CLICKED) {
+				SuspendThread(hThread3);
+			}
 
 			return TRUE;
 		}
@@ -57,21 +91,6 @@ INT_PTR CALLBACK DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	return FALSE;
 }
 
-void Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify) {
-	if (IDC_REALTIME == id) {
-		HANDLE hThread = CreateThread(NULL, 0, Thread1, hEdit1, 0, NULL);
-		CloseHandle(hThread);
-	}
-	else if (IDC_NORMAL == id) {
-		HANDLE hThread = CreateThread(NULL, 0, Thread2, hEdit2, 0, NULL);
-		CloseHandle(hThread);
-	}
-	else if (IDC_IDLE == id) {
-		HANDLE hThread = CreateThread(NULL, 0, Thread3, hEdit3, 0, NULL);
-		CloseHandle(hThread);
-	}
-}
-
 // Потоки
 DWORD WINAPI Thread1(LPVOID lp) {
 	DWORD pr = GetPriorityClass(GetCurrentProcess());
@@ -82,10 +101,13 @@ DWORD WINAPI Thread1(LPVOID lp) {
 	HWND hWnd = HWND(lp);
 
 	for (int i = 0; i <= maxIndex; i++) {
-		TCHAR str[10];
+		if (isPrime(i)) {
+			TCHAR buff[MAX_PATH];
 
-		wsprintf(str, TEXT("%d"), i);
-		SetWindowText(hWnd, str);
+			wsprintf(buff, TEXT("%d"), i);
+			int index = SendMessage(hWnd, LB_ADDSTRING, 0, LPARAM(buff));
+			SendMessage(hWnd, LB_SETCARETINDEX, index, FALSE);
+		}
 	}
 
 	SetPriorityClass(GetCurrentProcess(), pr);
@@ -102,16 +124,19 @@ DWORD WINAPI Thread2(LPVOID lp) {
 	HWND hWnd = HWND(lp);
 
 	for (int i = 0; i <= maxIndex; i++) {
-		TCHAR str[10];
+		if (i % 2 == 0) {
+			TCHAR buff[MAX_PATH];
 
-		wsprintf(str, TEXT("%d"), i);
-		SetWindowText(hWnd, str);
+			wsprintf(buff, TEXT("%d"), i);
+			int index = SendMessage(hWnd, LB_ADDSTRING, 0, LPARAM(buff));
+			SendMessage(hWnd, LB_SETCARETINDEX, index, FALSE);
+		}
 	}
 
 	SetPriorityClass(GetCurrentProcess(), pr);
 
 	return 0;
-}
+} 
 
 DWORD WINAPI Thread3(LPVOID lp) {
 	DWORD pr = GetPriorityClass(GetCurrentProcess());
@@ -122,13 +147,27 @@ DWORD WINAPI Thread3(LPVOID lp) {
 	HWND hWnd = HWND(lp);
 
 	for (int i = 0; i <= maxIndex; i++) {
-		TCHAR str[10];
+		TCHAR buff[MAX_PATH];
 
-		wsprintf(str, TEXT("%d"), i);
-		SetWindowText(hWnd, str);
+		wsprintf(buff, TEXT("%d"), i);
+		int index = SendMessage(hWnd, LB_ADDSTRING, 0, LPARAM(buff));
+		SendMessage(hWnd, LB_SETCARETINDEX, index, FALSE);
 	}
 
 	SetPriorityClass(GetCurrentProcess(), pr);
 
 	return 0;
+}
+
+
+bool isPrime(int n) {
+	if (n <= 1) {
+		return false;
+	}
+	for (int i = 2; i * i <= n; i++) {
+		if (n % i == 0) {
+			return false;
+		}
+	}
+	return true;
 }

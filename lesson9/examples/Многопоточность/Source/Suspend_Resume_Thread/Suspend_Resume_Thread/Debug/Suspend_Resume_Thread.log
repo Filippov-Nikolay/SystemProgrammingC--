@@ -1,0 +1,7 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  MultithreadDlg.cpp
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson9\examples\Многопоточность\Source\Suspend_Resume_Thread\Suspend_Resume_Thread\MultithreadDlg.cpp(33,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Multithread.cpp
+  Создание кода...
+Multithread.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
+  Suspend_Resume_Thread.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson9\examples\Многопоточность\Source\Suspend_Resume_Thread\Debug\Suspend_Resume_Thread.exe
