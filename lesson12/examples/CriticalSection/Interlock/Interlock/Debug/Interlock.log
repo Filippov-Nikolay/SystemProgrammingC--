@@ -1,0 +1,7 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  InterlockDlg.cpp
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson12\examples\CriticalSection\Interlock\Interlock\InterlockDlg.cpp(57,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Создание кода...
+  Пропуск... (изменения не обнаружены)
+  Interlock.cpp
+  Interlock.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson12\examples\CriticalSection\Interlock\Debug\Interlock.exe

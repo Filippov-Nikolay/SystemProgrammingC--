@@ -1,0 +1,5 @@
+[ Nikolay | Filippov | 19 | Login | Password ]
+[ 1 | 1 | 1 | 1 | 1 ]
+[ 1 | 1 | 1 | 1 | 1 ]
+[ 1 | 1 | 1 | 1 | 1 ]
+[ Nikolay | Filippov | 19 | Login | Password ]

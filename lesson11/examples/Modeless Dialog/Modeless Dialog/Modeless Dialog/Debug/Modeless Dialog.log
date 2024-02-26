@@ -1,0 +1,4 @@
+﻿Modeless Dialog.rc(46): warning RC2182: duplicate dialog control ID 1002
+  
+MainModalDialog.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
+  Modeless Dialog.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson11\examples\Modeless Dialog\Modeless Dialog\Debug\Modeless Dialog.exe

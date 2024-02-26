@@ -1,0 +1,4 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  CriticalSectionDlg.cpp
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson12\examples\CriticalSection\CriticalSection\CriticalSection\CriticalSectionDlg.cpp(45,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  CriticalSection.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson12\examples\CriticalSection\CriticalSection\Debug\CriticalSection.exe
