@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ generated include file.
-// Used by CodingThread.rc
+// Включаемый файл, созданный в Microsoft Visual C++.
+// Используется CodingThread.rc
 //
 #define IDD_DIALOG1                     101
 #define IDC_BUTTON1                     1001

@@ -54,6 +54,7 @@ DWORD WINAPI Coding_Thread(LPVOID lp)
 	return 0;
 }
 
+/*
 DWORD WINAPI Coding_Thread_List(LPVOID lp) {
 	CodingThreadDlg* ptr = (CodingThreadDlg*)lp;
 
@@ -69,11 +70,26 @@ DWORD WINAPI Coding_Thread_List(LPVOID lp) {
 
 	DWORD dwAnswer = WaitForSingleObject(hMutex, INFINITE);
 
-	do {
+	string text, line;
+
+	while (getline(in, line)) {
+		text += line += "\r\n";
+	}
+
+	int len = MultiByteToWideChar(CP_UTF8, 0, buf, -1, NULL, 100);
+	wchar_t* wbuf = new wchar_t[len];
+	MultiByteToWideChar(CP_UTF8, 0, buf, -1, wbuf, 100);
+
+	SendMessageW(hEdit1, EM_REPLACESEL, TRUE, (LPARAM)wbuf);
+
+	/*do {
 		in.getline(buf, 255);
 
-		SendMessageA(hEdit1, EM_REPLACESEL, 0, LPARAM(buf));
-		SendMessageA(hEdit1, EM_REPLACESEL, 0, LPARAM("\r\n"));
+		wchar_t wbuf[100];
+		MultiByteToWideChar(CP_UTF8, 0, buf, -1, wbuf, 100);
+
+		SendMessageA(hEdit1, EM_REPLACESEL, TRUE, (LPARAM)wbuf);
+		SendMessageA(hEdit1, EM_REPLACESEL, TRUE, (LPARAM)L"\r\n");
 	} while (in);
 	
 	in.close();
@@ -82,6 +98,42 @@ DWORD WINAPI Coding_Thread_List(LPVOID lp) {
 
 	return 0;
 }
+*/
+
+DWORD WINAPI Coding_Thread_List(LPVOID lp) {
+	CodingThreadDlg* ptr = (CodingThreadDlg*)lp;
+
+	char buf[255];
+	std::ifstream in("coding.txt", ios::in);
+
+	if (!in) {
+		MessageBox(ptr->hDialog, TEXT("Ошибка открытия файла!"), TEXT("Мьютекс"), MB_OK | MB_ICONINFORMATION);
+		return 1;
+	}
+
+	hMutex = OpenMutex(MUTEX_ALL_ACCESS, false, TEXT("{C189244F-52C7-423B-B578-F4361D0F84DE}"));
+
+	DWORD dwAnswer = WaitForSingleObject(hMutex, INFINITE);
+
+	do {
+		in.getline(buf, 255);
+
+		int len = MultiByteToWideChar(CP_UTF8, 0, buf, -1, NULL, 0);
+		wchar_t* wbuf = new wchar_t[len];
+		MultiByteToWideChar(CP_UTF8, 0, buf, -1, wbuf, len);
+
+		SendMessageW(hEdit1, EM_REPLACESEL, TRUE, (LPARAM)wbuf);
+		SendMessageW(hEdit1, EM_REPLACESEL, TRUE, (LPARAM)L"\r\n");
+		delete[] wbuf;
+	} while (in);
+
+	in.close();
+
+	ReleaseMutex(hMutex); // освобождения мьютекса
+
+	return 0;
+}
+
 
 void CodingThreadDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify) {
 	if (id == IDC_BUTTON1) {

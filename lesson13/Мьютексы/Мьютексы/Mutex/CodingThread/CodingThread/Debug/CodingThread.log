@@ -1,6 +1,0 @@
-﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
-  CodingThreadDlg.cpp
-  CodingThread.cpp
-  Создание кода...
-CodingThread.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
-  CodingThread.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson13\Мьютексы\Мьютексы\Mutex\CodingThread\Debug\CodingThread.exe
