@@ -40,7 +40,7 @@ void ParentProcessDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeN
 		CreateSemaphore(NULL, 1, 3, TEXT("{2525FD5F-12E6-47c0-838A-7C5CA1EBD169}"));
 		STARTUPINFO st = {sizeof(st)};
 		PROCESS_INFORMATION pr;
-		TCHAR filename[20];
+		TCHAR filename[50];
 		wsprintf(filename, TEXT("%s"), TEXT("CodingThread.exe"));
 		if (!CreateProcess(NULL, filename, NULL, NULL, 0, 0, NULL, NULL, &st, &pr))
 		{
@@ -49,6 +49,7 @@ void ParentProcessDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeN
 		}
 		CloseHandle(pr.hThread);
 		CloseHandle(pr.hProcess);
+
 		ZeroMemory(&st, sizeof(st));
 		st.cb = sizeof(st);
 		for(int i = 1; i <= 3; i++)
@@ -63,7 +64,18 @@ void ParentProcessDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeN
 			}
 			CloseHandle(pr.hThread);
 			CloseHandle(pr.hProcess);	
-		}	
+		}
+
+		ZeroMemory(&st, sizeof(st));
+		st.cb = sizeof(st);
+		wsprintf(filename, TEXT("%s"), TEXT("Generalnformation.exe"));
+		if (!CreateProcess(NULL, filename, NULL, NULL, 0, 0, NULL, NULL, &st, &pr)) {
+			MessageAboutError(GetLastError());
+			return;
+		}
+		CloseHandle(pr.hThread);
+		CloseHandle(pr.hProcess);
+
 	}
 }
 

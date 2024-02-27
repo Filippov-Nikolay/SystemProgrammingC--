@@ -1,0 +1,6 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  SemaphoreDlg.cpp
+  Semaphore.cpp
+  Создание кода...
+Semaphore.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
+  Semaphore.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson14\examples-practice\Семафоры\Семафоры\Semaphore\Debug\Semaphore.exe
