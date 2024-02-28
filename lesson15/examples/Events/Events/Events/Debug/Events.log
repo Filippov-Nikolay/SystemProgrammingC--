@@ -1,0 +1,3 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  EventDlg.cpp
+  Events.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson15\examples\Events\Events\Debug\Events.exe
