@@ -2,4 +2,6 @@
   UsingListboxDlg.cpp
 C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson7\examples\Slider\Using List Box (IDE)\Using List Box (IDE)\UsingListboxDlg.cpp(36,20): warning C4018: <: несоответствие типов со знаком и без знака
 C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson7\examples\Slider\Using List Box (IDE)\Using List Box (IDE)\UsingListboxDlg.cpp(56,20): warning C4018: <: несоответствие типов со знаком и без знака
+  LINK : не найден или не выполнена сборка C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson7\examples\Slider\Using List Box (IDE)\Debug\Using List Box (IDE).exe при последней инкрементной компоновке; выполняется полная компоновка
+UsingListbox.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
   Using List Box (IDE).vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson7\examples\Slider\Using List Box (IDE)\Debug\Using List Box (IDE).exe

@@ -1,0 +1,4 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  CodingThreadDlg.cpp
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson15\homework\Semaphore (different processes)\CodingThread\CodingThread\CodingThreadDlg.cpp(40,10): warning C4244: инициализация: преобразование "std::streamsize" в "int", возможна потеря данных
+  CodingThread.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson15\homework\Semaphore (different processes)\CodingThread\Debug\CodingThread.exe

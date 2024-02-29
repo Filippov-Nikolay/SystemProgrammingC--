@@ -1,0 +1,7 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  CodingThreadDlg.cpp
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson14\examples-practice\Семафоры\Семафоры\Semaphore (different processes)\CodingThread\CodingThread\CodingThreadDlg.cpp(39,10): warning C4244: инициализация: преобразование "std::streamsize" в "int", возможна потеря данных
+  CodingThread.cpp
+  Создание кода...
+CodingThread.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
+  CodingThread.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson14\examples-practice\Семафоры\Семафоры\Semaphore (different processes)\CodingThread\Debug\CodingThread.exe

@@ -37,8 +37,10 @@ void ParentProcessDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeN
 {
 	if(IDC_BUTTON1 == id)
 	{
-		CreateEvent(NULL, TRUE /* ручной сброс событи€ */, FALSE /* несигнальное состо€ние */, TEXT("{2525FD5F-12E6-47c0-838A-7C5CA1EBD169}"));
+		//HANDLE hEvent = CreateEvent(NULL, FALSE /* ручной сброс событи€ */, FALSE /* несигнальное состо€ние */, TEXT("{2525FD5F-12E6-47c0-838A-7C5CA1EBD169}"));
+		//HANDLE h = OpenEvent(EVENT_ALL_ACCESS, 0, TEXT("{ECA57A59-2BD7-4fb5-A132-7A00944F7CEF}"));
 
+		//// CreateSemaphore(NULL, 1, 3, TEXT("{2525FD5F-12E6-47c0-838A-7C5CA1EBD169}"));
 		STARTUPINFO st = {sizeof(st)};
 		PROCESS_INFORMATION pr;
 		TCHAR filename[50];
@@ -64,7 +66,7 @@ void ParentProcessDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeN
 				MessageAboutError(GetLastError());
 			}
 			CloseHandle(pr.hThread);
-			CloseHandle(pr.hProcess);	
+			CloseHandle(pr.hProcess);
 		}
 
 		ZeroMemory(&st, sizeof(st));
@@ -76,7 +78,6 @@ void ParentProcessDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeN
 		}
 		CloseHandle(pr.hThread);
 		CloseHandle(pr.hProcess);
-
 	}
 }
 

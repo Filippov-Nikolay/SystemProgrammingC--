@@ -1,0 +1,3 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  WaitableTimerDlg.cpp
+  WaitableTimer.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson16\examples\WaitableTimer\WaitableTimer\Debug\WaitableTimer.exe

@@ -33,9 +33,10 @@ DWORD WINAPI Decoding_Thread(LPVOID lp)
 			last = token;
 	}
 	wsprintf(str, TEXT("copymusic_%s.txt"), last);
-	HANDLE hSemaphore = OpenSemaphore(SEMAPHORE_ALL_ACCESS, false, TEXT("{2525FD5F-12E6-47c0-838A-7C5CA1EBD169}"));
-	DWORD dwAnswer = WaitForSingleObject(hSemaphore, INFINITE);
-	if(dwAnswer == WAIT_OBJECT_0)
+	
+	HANDLE hEvent = OpenEvent(EVENT_ALL_ACCESS, 0, TEXT("{2525FD5F-12E6-47c0-838A-7C5CA1EBD169}"));
+
+	if(WaitForSingleObject(hEvent, INFINITE) == WAIT_OBJECT_0)
 	{
 		ifstream in(TEXT("coding.txt"), ios::binary | ios::in);
 		if(!in)
@@ -57,7 +58,6 @@ DWORD WINAPI Decoding_Thread(LPVOID lp)
 		}
 		out.close();
 		in.close();
-		ReleaseSemaphore(hSemaphore, 1, NULL);
 		MessageBox(ptr->hDialog, TEXT("Чтение данных из файла coding.txt завершено!"), TEXT("Семафор"), MB_OK | MB_ICONINFORMATION);
 	}
 	return 0;
@@ -66,7 +66,14 @@ DWORD WINAPI Decoding_Thread(LPVOID lp)
 BOOL DecodingThreadDlg::Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam) 
 {
 	hDialog = hwnd;
+
+	HANDLE hEvent = CreateEvent(NULL, FALSE /*автоматический сброс события */, FALSE /* несигнальное состояние */, TEXT("{2525FD5F-12E6-47c0-838A-7C5CA1EBD169}"));
+
 	CreateThread(NULL, 0, Decoding_Thread, this, 0, NULL); 
+
+	HANDLE h = OpenEvent(EVENT_ALL_ACCESS, 0, TEXT("{2525FD5F-12E6-47c0-838A-7C5CA1EBD169}"));
+	SetEvent(h);
+
 	return TRUE;
 }
 
