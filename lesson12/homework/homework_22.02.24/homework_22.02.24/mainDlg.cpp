@@ -1,4 +1,4 @@
-#include "mainDlg.h"
+п»ї#include "mainDlg.h"
 
 mainDlg* mainDlg::ptr = NULL;
 CRITICAL_SECTION cs;
@@ -17,109 +17,109 @@ void mainDlg::Cls_OnClose(HWND hwnd) {
 	EndDialog(hwnd, 0);
 }
 
-// Поток 1
+// РџРѕС‚РѕРє 1
 DWORD WINAPI WriteToFilesThread(LPVOID lp) {
-	// Создание крит. секции
+	// РЎРѕР·РґР°РЅРёРµ РєСЂРёС‚. СЃРµРєС†РёРё
 	EnterCriticalSection(&cs);
 
 	mainDlg* ptr = (mainDlg*)lp;
 
-	// Чтение файла
+	// Р§С‚РµРЅРёРµ С„Р°Р№Р»Р°
 	std::wifstream in(_TEXT("music.txt", std::ios::in));
 
 	int N = 4;
 
-	// Проверка на октрытие файла
+	// РџСЂРѕРІРµСЂРєР° РЅР° РѕРєС‚СЂС‹С‚РёРµ С„Р°Р№Р»Р°
 	if (!in) {
-		MessageBox(ptr->hDialog, TEXT("Ошибка открытия файла!"), TEXT("Мьютекс"), MB_OK | MB_ICONINFORMATION);
+		MessageBox(ptr->hDialog, TEXT("РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°!"), TEXT("РњСЊСЋС‚РµРєСЃ"), MB_OK | MB_ICONINFORMATION);
 		return 1;
 	}
 
 	wchar_t buff[254];
 
-	// Создаю N кол-во копий
+	// РЎРѕР·РґР°СЋ N РєРѕР»-РІРѕ РєРѕРїРёР№
 	for (int i = 1; i <= N; i++) {
-		// Помещаем текст в buff
+		// РџРѕРјРµС‰Р°РµРј С‚РµРєСЃС‚ РІ buff
 		wsprintf(buff, _TEXT("music_copy_%d.txt"), i);
 
 		// MessageBox(0, buff, _T("0"), MB_OK);
 
-		// Запись в файл
+		// Р—Р°РїРёСЃСЊ РІ С„Р°Р№Р»
 		std::wofstream out(buff, std::ios::out);
 
-		// Перебираю открытый файл
+		// РџРµСЂРµР±РёСЂР°СЋ РѕС‚РєСЂС‹С‚С‹Р№ С„Р°Р№Р»
 		while (!in.eof()) {
 			in.getline(buff, 254);
 
 			out << buff << "\r\n";
 		}
 
-		// Сбрасываем флаги ошибок
+		// РЎР±СЂР°СЃС‹РІР°РµРј С„Р»Р°РіРё РѕС€РёР±РѕРє
 		in.clear();
-		// Возвращаем указатель чтения файла в начало
+		// Р’РѕР·РІСЂР°С‰Р°РµРј СѓРєР°Р·Р°С‚РµР»СЊ С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° РІ РЅР°С‡Р°Р»Рѕ
 		in.seekg(0, std::ios::beg);
-		// Закрываем файл
+		// Р—Р°РєСЂС‹РІР°РµРј С„Р°Р№Р»
 		out.close();
 	}
-	// Закрываем файл
+	// Р—Р°РєСЂС‹РІР°РµРј С„Р°Р№Р»
 	in.close();
 
-	// Закрытие крит. секции
+	// Р—Р°РєСЂС‹С‚РёРµ РєСЂРёС‚. СЃРµРєС†РёРё
 	LeaveCriticalSection(&cs);
 
-	MessageBox(0, _T("Копии созданы!"), _T("Информация"), MB_OK);
+	MessageBox(0, _T("РљРѕРїРёРё СЃРѕР·РґР°РЅС‹!"), _T("РРЅС„РѕСЂРјР°С†РёСЏ"), MB_OK);
 
 	return 0;
 }
 
-// Поток 2
+// РџРѕС‚РѕРє 2
 DWORD WINAPI ReadFromFilesThread(LPVOID lp) {
-	// Создание крит. секции
+	// РЎРѕР·РґР°РЅРёРµ РєСЂРёС‚. СЃРµРєС†РёРё
 	EnterCriticalSection(&cs);
 
 	mainDlg* ptr = (mainDlg*)lp;
 
-	// Запись в файл
+	// Р—Р°РїРёСЃСЊ РІ С„Р°Р№Р»
 	std::wofstream out("all_music.txt", std::ios::out);
 
 	int N = 4;
 
 	wchar_t buff[254];
 
-	// Создаю N кол-во копий
+	// РЎРѕР·РґР°СЋ N РєРѕР»-РІРѕ РєРѕРїРёР№
 	for (int i = 1; i <= N; i++) {
 		wsprintf(buff, _TEXT("music_copy_%d.txt"), i);
 
 		// MessageBox(0, buff, _T("0"), MB_OK);
 
-		// Чтение файла
+		// Р§С‚РµРЅРёРµ С„Р°Р№Р»Р°
 		std::wifstream in(buff, std::ios::in);
 
-		// Проверка на октрытие файла
+		// РџСЂРѕРІРµСЂРєР° РЅР° РѕРєС‚СЂС‹С‚РёРµ С„Р°Р№Р»Р°
 		if (!in) {
-			MessageBox(ptr->hDialog, TEXT("Ошибка открытия файла!"), TEXT("Мьютекс"), MB_OK | MB_ICONINFORMATION);
+			MessageBox(ptr->hDialog, TEXT("РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°!"), TEXT("РњСЊСЋС‚РµРєСЃ"), MB_OK | MB_ICONINFORMATION);
 			return 1;
 		}
 
-		// Перебираю открытый файл
+		// РџРµСЂРµР±РёСЂР°СЋ РѕС‚РєСЂС‹С‚С‹Р№ С„Р°Р№Р»
 		while (!in.eof()) {
 			in.getline(buff, 254);
 
 			out << buff << "\n";
 		}
 
-		// Сбрасываем флаги ошибок
+		// РЎР±СЂР°СЃС‹РІР°РµРј С„Р»Р°РіРё РѕС€РёР±РѕРє
 		in.clear();
-		// Возвращаем указатель чтения файла в начало
+		// Р’РѕР·РІСЂР°С‰Р°РµРј СѓРєР°Р·Р°С‚РµР»СЊ С‡С‚РµРЅРёСЏ С„Р°Р№Р»Р° РІ РЅР°С‡Р°Р»Рѕ
 		in.seekg(0, std::ios::beg);
 	}
-	// Закрываем файл
+	// Р—Р°РєСЂС‹РІР°РµРј С„Р°Р№Р»
 	out.close();
 
-	// Закрытие крит. секции
+	// Р—Р°РєСЂС‹С‚РёРµ РєСЂРёС‚. СЃРµРєС†РёРё
 	LeaveCriticalSection(&cs);
 
-	MessageBox(0, _T("Запись завершена!"), _T("Информация"), MB_OK);
+	MessageBox(0, _T("Р—Р°РїРёСЃСЊ Р·Р°РІРµСЂС€РµРЅР°!"), _T("РРЅС„РѕСЂРјР°С†РёСЏ"), MB_OK);
 
 	return 0;
 }

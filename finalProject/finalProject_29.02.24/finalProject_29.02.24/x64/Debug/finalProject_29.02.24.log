@@ -1,7 +1,12 @@
-﻿  mainDlg.cpp
-C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(65,13): warning C4244: инициализация: преобразование "LRESULT" в "int", возможна потеря данных
-C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(75,13): warning C4244: инициализация: преобразование "LRESULT" в "int", возможна потеря данных
-C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(91,13): warning C4244: инициализация: преобразование "LRESULT" в "int", возможна потеря данных
-C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(102,13): warning C4244: инициализация: преобразование "LRESULT" в "int", возможна потеря данных
-C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(121,13): warning C4244: инициализация: преобразование "LRESULT" в "int", возможна потеря данных
+﻿  main.cpp
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\main.cpp(5,9): warning C4244: return: преобразование "INT_PTR" в "int", возможна потеря данных
+  mainDlg.cpp
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(97,13): warning C4244: инициализация: преобразование "LRESULT" в "int", возможна потеря данных
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(122,13): warning C4244: инициализация: преобразование "LRESULT" в "int", возможна потеря данных
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(133,13): warning C4244: инициализация: преобразование "LRESULT" в "int", возможна потеря данных
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(155,13): warning C4244: инициализация: преобразование "LRESULT" в "int", возможна потеря данных
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(201,33): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(201,23): warning C4267: инициализация: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(241,12): warning C4244: инициализация: преобразование "LRESULT" в "int", возможна потеря данных
+  Создание кода...
   finalProject_29.02.24.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\x64\Debug\finalProject_29.02.24.exe

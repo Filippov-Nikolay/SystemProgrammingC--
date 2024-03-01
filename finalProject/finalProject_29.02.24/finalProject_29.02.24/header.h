@@ -6,3 +6,5 @@
 #include <fstream>
 #include <commctrl.h>
 #include "resource.h"
+
+#pragma comment(lib,"comctl32")
