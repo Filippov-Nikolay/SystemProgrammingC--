@@ -1,0 +1,7 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  WH_MOUSE.cpp
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson17\examples\Hooks\Hooks\2. Запись в файл координат курсора мыши - WH_MOUSE\Global_HOOK_WH_MOUSE\Global_HOOK_WH_MOUSE\WH_MOUSE.cpp(25,11): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson17\examples\Hooks\Hooks\2. Запись в файл координат курсора мыши - WH_MOUSE\Global_HOOK_WH_MOUSE\Global_HOOK_WH_MOUSE\WH_MOUSE.cpp(28,9): warning C4101: str: неиспользованная локальная переменная
+WH_MOUSE.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
+     Создается библиотека C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson17\examples\Hooks\Hooks\2. Запись в файл координат курсора мыши - WH_MOUSE\Global_HOOK_WH_MOUSE\Debug\Global_HOOK_WH_MOUSE.lib и объект C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson17\examples\Hooks\Hooks\2. Запись в файл координат курсора мыши - WH_MOUSE\Global_HOOK_WH_MOUSE\Debug\Global_HOOK_WH_MOUSE.exp
+  Global_HOOK_WH_MOUSE.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson17\examples\Hooks\Hooks\2. Запись в файл координат курсора мыши - WH_MOUSE\Global_HOOK_WH_MOUSE\Debug\Global_HOOK_WH_MOUSE.dll

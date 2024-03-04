@@ -87,7 +87,7 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 			
 			//SetClassLong меняет поля в классе окна
 			//в данном случае меняем курсор
-			SetClassLong(hwnd, GCL_HCURSOR, (LONG)hCur);
+			// SetClassLong(hwnd, GCL_HCURSOR, (LONG)hCur);
 		}
 		else {
 			//GetLastError возвращает код ошибки, 

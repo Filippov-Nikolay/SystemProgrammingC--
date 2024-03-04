@@ -1,0 +1,3 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  MyDialog.cpp
+  LocalHook.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson17\examples\Hooks\Hooks\1. Простейший пример на локальный хук - WH_MOUSE\LocalHook\Debug\LocalHook.exe

@@ -41,7 +41,7 @@ BOOL CWaitableTimerDlg::Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lPara
 	HINSTANCE hInst = GetModuleHandle(NULL);
 
 	hIcon = LoadIcon(hInst, MAKEINTRESOURCE(IDI_ICON1)); // загружаем иконку
-	SetClassLong(hDialog, GCL_HICON, LONG(hIcon)); // устанавливаем иконку в главном окне приложения
+	SetClassLong(hwnd, GCL_HICON, LONG(hIcon)); // устанавливаем иконку в главном окне приложения
 	memset(pNID, 0, sizeof(NOTIFYICONDATA)); //Обнуление структуры
 	pNID->cbSize = sizeof(NOTIFYICONDATA); //размер структуры
 	pNID->hIcon = hIcon; //загружаем пользовательскую иконку
