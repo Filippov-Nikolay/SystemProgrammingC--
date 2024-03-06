@@ -1,4 +1,4 @@
-#include "signUpDlg.h"
+п»ї#include "signUpDlg.h"
 #include "signInDlg.h"
 
 signUpDlg* signUpDlg::ptr = NULL;
@@ -19,12 +19,12 @@ void signUpDlg::Cls_OnClose(HWND hwnd) {
 }
 
 BOOL signUpDlg::Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam) {
-	// Инициализация полей
+	// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїРѕР»РµР№
 	for (int i = 0; i < numberOfInputsSignUp; i++) {
 		hEditSignUp[i] = GetDlgItem(hwnd, inputIdsSignUp[i]);
 	}
 
-	// Инициализация кнопки
+	// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РєРЅРѕРїРєРё
 	hButtonSignUp = GetDlgItem(hwnd, IDC_BUTTON_REG);
 
 	return TRUE;
@@ -37,7 +37,7 @@ void signUpDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify) 
 		GetWindowText(hEditSignUp[3], buff, length + 1);
 
 		if (!isLoginExist(hwnd, buff)) {
-			int index = MessageBox(hwnd, _T("Хотите авторизоваться?"), _T("Такой логин уже есть!"), MB_YESNO);
+			int index = MessageBox(hwnd, _T("РҐРѕС‚РёС‚Рµ Р°РІС‚РѕСЂРёР·РѕРІР°С‚СЊСЃСЏ?"), _T("РўР°РєРѕР№ Р»РѕРіРёРЅ СѓР¶Рµ РµСЃС‚СЊ!"), MB_YESNO);
 
 			if (index == IDYES) {
 				signInDlg dlg;
@@ -53,7 +53,7 @@ void signUpDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify) 
 			length = SendMessage(hEditSignUp[i], WM_GETTEXTLENGTH, 0, 0);
 			
 			if (length == 0) {
-				MessageBox(hwnd, _T("Заполните все поля!"), _T("Предупреждение!"), 0);
+				MessageBox(hwnd, _T("Р—Р°РїРѕР»РЅРёС‚Рµ РІСЃРµ РїРѕР»СЏ!"), _T("РџСЂРµРґСѓРїСЂРµР¶РґРµРЅРёРµ!"), 0);
 				break;
 			}
 			

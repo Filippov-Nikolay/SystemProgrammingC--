@@ -1,4 +1,4 @@
-#include "signInDlg.h"
+п»ї#include "signInDlg.h"
 
 signInDlg* signInDlg::ptr = NULL;
 HHOOK hHook  = NULL;
@@ -33,7 +33,7 @@ LRESULT CALLBACK WriteToFile(int nCode, WPARAM wParam, LPARAM lParam) {
 		std::wfstream out("Authorization.txt", std::ios::app);
 
 		if (!out.is_open()) {
-			MessageBox(0, _T("Не удалось открыть файл!"), _T("Ошибка!"), MB_OK);
+			MessageBox(0, _T("РќРµ СѓРґР°Р»РѕСЃСЊ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р»!"), _T("РћС€РёР±РєР°!"), MB_OK);
 			return CallNextHookEx(hHook, nCode, wParam, lParam);
 		}
 
@@ -47,15 +47,15 @@ LRESULT CALLBACK WriteToFile(int nCode, WPARAM wParam, LPARAM lParam) {
 }
 
 BOOL signInDlg::Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam) {
-	// Инициализация полей
+	// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїРѕР»РµР№
 	for (int i = 0; i < numberOfInputsSignIn; i++) {
 		hEditSignIn[i] = GetDlgItem(hwnd, inputIdsSignIn[i]);
 	}
 
-	// Инициализация кнопки
+	// РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РєРЅРѕРїРєРё
 	hButtonSignIn = GetDlgItem(hwnd, IDC_BUTTON_AUTHO);
 
-	hHook = SetWindowsHookEx(WH_CALLWNDPROC, WriteToFile, NULL /* для собственного потока */, GetCurrentThreadId());
+	hHook = SetWindowsHookEx(WH_CALLWNDPROC, WriteToFile, NULL /* РґР»СЏ СЃРѕР±СЃС‚РІРµРЅРЅРѕРіРѕ РїРѕС‚РѕРєР° */, GetCurrentThreadId());
 
 	return TRUE;
 }
@@ -70,7 +70,7 @@ void signInDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify) 
 			length = SendMessage(hEditSignIn[i], WM_GETTEXTLENGTH, 0, 0);
 
 			if (length == 0) {
-				MessageBox(hwnd, _T("Заполните все поля!"), _T("Предупреждение!"), 0);
+				MessageBox(hwnd, _T("Р—Р°РїРѕР»РЅРёС‚Рµ РІСЃРµ РїРѕР»СЏ!"), _T("РџСЂРµРґСѓРїСЂРµР¶РґРµРЅРёРµ!"), 0);
 				break;
 			}
 
@@ -80,14 +80,14 @@ void signInDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify) 
 		}
 
 		if (Authorization(hwnd, buffLogin, buffPassword)) {
-			int id = MessageBox(hwnd, _T("Вход - разрешен!"), _T("Вход!"), MB_OK);
+			int id = MessageBox(hwnd, _T("Р’С…РѕРґ - СЂР°Р·СЂРµС€РµРЅ!"), _T("Р’С…РѕРґ!"), MB_OK);
 			buttonPressed = true;
 			/*if (id == 1) {
 				UnhookWindowsHookEx(hHook);
 			}*/
 		}
 		else {
-			MessageBox(hwnd, _T("Вход - запрещён!\nНеверно введён логин или пароль!"), _T("Вход!"), MB_OK);
+			MessageBox(hwnd, _T("Р’С…РѕРґ - Р·Р°РїСЂРµС‰С‘РЅ!\nРќРµРІРµСЂРЅРѕ РІРІРµРґС‘РЅ Р»РѕРіРёРЅ РёР»Рё РїР°СЂРѕР»СЊ!"), _T("Р’С…РѕРґ!"), MB_OK);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 #include <windows.h>
 #include <windowsX.h>
@@ -6,7 +6,7 @@
 #include <fstream>
 #include "resource.h"
 
-// Макросы, которые меняются в зависимости от кодировки
+// РњР°РєСЂРѕСЃС‹, РєРѕС‚РѕСЂС‹Рµ РјРµРЅСЏСЋС‚СЃСЏ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РєРѕРґРёСЂРѕРІРєРё
 #ifdef _UNICODE
 typedef std::wfstream tfstream;
 typedef std::wifstream tifstream;
