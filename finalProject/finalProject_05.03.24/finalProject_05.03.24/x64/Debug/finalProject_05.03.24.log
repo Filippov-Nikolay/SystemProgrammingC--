@@ -1,0 +1,5 @@
+﻿  main.cpp
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_05.03.24\finalProject_05.03.24\main.cpp(5,9): warning C4244: return: преобразование "INT_PTR" в "int", возможна потеря данных
+  mainDlg.cpp
+  Создание кода...
+  finalProject_05.03.24.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_05.03.24\x64\Debug\finalProject_05.03.24.exe

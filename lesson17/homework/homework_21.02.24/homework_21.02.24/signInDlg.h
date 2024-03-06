@@ -7,7 +7,6 @@ class signInDlg {
 public:
 	int inputIdsSignIn[numberOfInputsSignIn] = { IDC_LOGIN, IDC_PASSWORD };
 	HWND hEditSignIn[numberOfInputsSignIn] = { 0 };
-	HWND hButtonSignIn;
 
 	signInDlg(void);
 	signInDlg(LPCTSTR);

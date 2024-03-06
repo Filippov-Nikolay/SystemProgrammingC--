@@ -30,7 +30,7 @@ CMyDialog::~CMyDialog(void)
 	UnhookWindowsHookEx(hHook);
 }
 
-LRESULT CALLBACK MouseProc(int idCode, WPARAM wParam, LPARAM lParam)
+LRESULT CALLBACK MouseProc1(int idCode, WPARAM wParam, LPARAM lParam)
 {
 	/*
 		Если первый параметр равен HC_ACTION - сообщение будет удалено из очереди, т.е. наша хук-функция должна его обработать.
@@ -80,7 +80,7 @@ LRESULT CALLBACK MouseProc(int idCode, WPARAM wParam, LPARAM lParam)
 
 void CMyDialog::OnInitDialog(HWND h)
 {
-	hHook=SetWindowsHookEx(WH_MOUSE, MouseProc, NULL /*для собственного потока*/, GetCurrentThreadId());
+	hHook=SetWindowsHookEx(WH_MOUSE, MouseProc1, NULL /*для собственного потока*/, GetCurrentThreadId());
 	/*
 	Устанавливает функцию перехвата сообщений Windows.
 

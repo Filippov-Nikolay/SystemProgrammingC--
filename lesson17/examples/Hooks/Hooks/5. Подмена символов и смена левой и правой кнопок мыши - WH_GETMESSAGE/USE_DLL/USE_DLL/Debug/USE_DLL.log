@@ -1,0 +1,6 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  MyDialog.cpp
+  main.cpp
+  Создание кода...
+main.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
+  USE_DLL.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson17\examples\Hooks\Hooks\5. Подмена символов и смена левой и правой кнопок мыши - WH_GETMESSAGE\USE_DLL\Debug\USE_DLL.exe

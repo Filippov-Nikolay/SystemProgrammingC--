@@ -2,6 +2,11 @@
 
 signInDlg* signInDlg::ptr = NULL;
 HHOOK hHook  = NULL;
+HWND hButtonSignIn;
+
+_TCHAR buffLogin[256] = _T("");
+_TCHAR buffPassword[256] = _T("");
+bool buttonPressed = false;
 
 signInDlg::signInDlg(void) {
 	ptr = this;
@@ -12,18 +17,33 @@ signInDlg::signInDlg(LPCTSTR lpStr) {
 }
 
 signInDlg::~signInDlg() {
+	UnhookWindowsHookEx(hHook);
 }
 
 void signInDlg::Cls_OnClose(HWND hwnd) {
 	EndDialog(hwnd, IDCANCEL);
 }
 
-LRESULT CALLBACK WriteToFile(int idCode, WPARAM wParam, LPARAM lParam) {
-	if (idCode == HC_ACTION) {
-		
+LRESULT CALLBACK WriteToFile(int nCode, WPARAM wParam, LPARAM lParam) {
+	if (nCode == HC_ACTION && lParam && buttonPressed) {
+		buttonPressed = false;
+
+		CWPSTRUCT* cwp = (CWPSTRUCT*)lParam;
+
+		std::wfstream out("Authorization.txt", std::ios::app);
+
+		if (!out.is_open()) {
+			MessageBox(0, _T("Не удалось открыть файл!"), _T("Ошибка!"), MB_OK);
+			return CallNextHookEx(hHook, nCode, wParam, lParam);
+		}
+
+		out << buffLogin << "\n";
+		out << buffPassword << "\n\n";
+
+		out.close();
 	}
 
-	return CallNextHookEx(hHook, idCode, wParam, lParam);
+	return CallNextHookEx(hHook, nCode, wParam, lParam);
 }
 
 BOOL signInDlg::Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam) {
@@ -35,13 +55,13 @@ BOOL signInDlg::Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam) {
 	// Инициализация кнопки
 	hButtonSignIn = GetDlgItem(hwnd, IDC_BUTTON_AUTHO);
 
+	hHook = SetWindowsHookEx(WH_CALLWNDPROC, WriteToFile, NULL /* для собственного потока */, GetCurrentThreadId());
+
 	return TRUE;
 }
 
 void signInDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify) {
 	if (IDC_BUTTON_AUTHO == id) {
-		_TCHAR buffLogin[256] = _T("");
-		_TCHAR buffPassword[256] = _T("");
 		_TCHAR buff[256] = _T("");
 
 		int length = 0;
@@ -60,10 +80,11 @@ void signInDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify) 
 		}
 
 		if (Authorization(hwnd, buffLogin, buffPassword)) {
-			MessageBox(hwnd, _T("Вход - разрешен!"), _T("Вход!"), 0);
-			hHook = SetWindowsHookEx(WH_CALLWNDPROC, WriteToFile, NULL /* для собственного потока */, GetCurrentThreadId());
-			
-			/*UnhookWindowsHookEx(hHook);*/
+			int id = MessageBox(hwnd, _T("Вход - разрешен!"), _T("Вход!"), MB_OK);
+			buttonPressed = true;
+			/*if (id == 1) {
+				UnhookWindowsHookEx(hHook);
+			}*/
 		}
 		else {
 			MessageBox(hwnd, _T("Вход - запрещён!\nНеверно введён логин или пароль!"), _T("Вход!"), MB_OK);

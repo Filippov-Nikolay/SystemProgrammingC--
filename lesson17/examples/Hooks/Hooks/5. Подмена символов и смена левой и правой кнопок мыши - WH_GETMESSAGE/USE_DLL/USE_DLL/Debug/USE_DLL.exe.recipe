@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ProjectOutputs>
+    <ProjectOutput>
+      <FullPath>C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson17\examples\Hooks\Hooks\5. Подмена символов и смена левой и правой кнопок мыши - WH_GETMESSAGE\USE_DLL\Debug\WH_GETMESSAGE.dll</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson17\examples\Hooks\Hooks\5. Подмена символов и смена левой и правой кнопок мыши - WH_GETMESSAGE\USE_DLL\Debug\USE_DLL.exe</FullPath>
+    </ProjectOutput>
+  </ProjectOutputs>
+  <ContentFiles />
+  <SatelliteDlls />
+  <NonRecipeFileRefs />
+</Project>
