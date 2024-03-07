@@ -1,12 +1,1 @@
-﻿  mainDlg.cpp
-C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(159,55): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(189,13): warning C4244: инициализация: преобразование "LRESULT" в "int", возможна потеря данных
-C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(214,13): warning C4244: инициализация: преобразование "LRESULT" в "int", возможна потеря данных
-C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(225,13): warning C4244: инициализация: преобразование "LRESULT" в "int", возможна потеря данных
-C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(247,13): warning C4244: инициализация: преобразование "LRESULT" в "int", возможна потеря данных
-C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(313,33): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(313,23): warning C4267: инициализация: преобразование из "size_t" в "const int"; возможна потеря данных
-C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(398,12): warning C4244: инициализация: преобразование "LRESULT" в "int", возможна потеря данных
-C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(435,33): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
-C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\finalProject_29.02.24\mainDlg.cpp(435,23): warning C4267: инициализация: преобразование из "size_t" в "const int"; возможна потеря данных
-  finalProject_29.02.24.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_29.02.24\x64\Debug\finalProject_29.02.24.exe
+﻿  finalProject_29.02.24.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson16\homework\finalProject_29.02.24\x64\Debug\finalProject_29.02.24.exe

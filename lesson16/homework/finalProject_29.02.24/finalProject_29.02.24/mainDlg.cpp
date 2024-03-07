@@ -1,4 +1,4 @@
-#include "mainDlg.h"
+п»ї#include "mainDlg.h"
 
 mainDlg* mainDlg::ptr = NULL;
 bool isSave = false;
@@ -7,10 +7,10 @@ int numberCases = 0;
 //std::vector<std::vector<int>> timerArray;
 std::vector<int> timerArray;
 
-// Глобальный вектор для хранения дескрипторов потоков
+// Р“Р»РѕР±Р°Р»СЊРЅС‹Р№ РІРµРєС‚РѕСЂ РґР»СЏ С…СЂР°РЅРµРЅРёСЏ РґРµСЃРєСЂРёРїС‚РѕСЂРѕРІ РїРѕС‚РѕРєРѕРІ
 std::vector<HANDLE> threadHandles;
 
-// Структура для таймера
+// РЎС‚СЂСѓРєС‚СѓСЂР° РґР»СЏ С‚Р°Р№РјРµСЂР°
 struct ThreadParams {
 	int timer;
 	int index;
@@ -28,12 +28,12 @@ mainDlg::~mainDlg(void) {
 }
 
 BOOL mainDlg::Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam) {
-	// Получение дескриптора экземпляра приложения
+	// РџРѕР»СѓС‡РµРЅРёРµ РґРµСЃРєСЂРёРїС‚РѕСЂР° СЌРєР·РµРјРїР»СЏСЂР° РїСЂРёР»РѕР¶РµРЅРёСЏ
 	HINSTANCE hInst = GetModuleHandle(NULL);
 
 	hIcon = LoadIcon(hInst, MAKEINTRESOURCE(IDB_PNG1));
 
-	// Устанавка иконки в главном окне приложения
+	// РЈСЃС‚Р°РЅР°РІРєР° РёРєРѕРЅРєРё РІ РіР»Р°РІРЅРѕРј РѕРєРЅРµ РїСЂРёР»РѕР¶РµРЅРёСЏ
 	//SetClassLong(hwnd, GCL_HICON, LONG(hIcon));
 	pNID->hIcon = hIcon;
 
@@ -54,7 +54,7 @@ BOOL mainDlg::Cls_OnInitDialog(HWND hwnd, HWND hwndFocus, LPARAM lParam) {
 	
 	_TCHAR buff[25] = _T("");
 
-	// Добавление в список пункты
+	// Р”РѕР±Р°РІР»РµРЅРёРµ РІ СЃРїРёСЃРѕРє РїСѓРЅРєС‚С‹
 	/*for (int i = 0; i < 3; i++) {
 		wsprintf(buff, _T("Text %d"), i);
 		SendMessage(hList1, LB_ADDSTRING, 0, LPARAM(buff));
@@ -100,23 +100,23 @@ DWORD WINAPI Thread_timer(LPVOID lp) {
 
 	FILETIME ft;
 
-	// Преобразуем структуру SYSTEMTIME в FILETIME
+	// РџСЂРµРѕР±СЂР°Р·СѓРµРј СЃС‚СЂСѓРєС‚СѓСЂСѓ SYSTEMTIME РІ FILETIME
 	SystemTimeToFileTime(&st, &ft);
 
-	// Преобразуем местное время в UTC-время 
+	// РџСЂРµРѕР±СЂР°Р·СѓРµРј РјРµСЃС‚РЅРѕРµ РІСЂРµРјСЏ РІ UTC-РІСЂРµРјСЏ 
 	LocalFileTimeToFileTime(&ft, &ft);
 
-	// Устанавливаем таймер
+	// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј С‚Р°Р№РјРµСЂ
 	SetWaitableTimer(hTimer, (LARGE_INTEGER*)&ft, 0, NULL, NULL, FALSE);
 
-	// Ожидание перехода таймера в сигнальное состояние
+	// РћР¶РёРґР°РЅРёРµ РїРµСЂРµС…РѕРґР° С‚Р°Р№РјРµСЂР° РІ СЃРёРіРЅР°Р»СЊРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
 	if (WaitForSingleObject(hTimer, INFINITE) == WAIT_OBJECT_0) {
 		MessageBox(0, _T("FFFFF"), 0, 0);
 
-		// Удаление элемента по индексу
+		// РЈРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїРѕ РёРЅРґРµРєСЃСѓ
 		SendMessage(hList3, LB_DELETESTRING, index, 0);
 
-		// Вставка нового текста на тот же индекс
+		// Р’СЃС‚Р°РІРєР° РЅРѕРІРѕРіРѕ С‚РµРєСЃС‚Р° РЅР° С‚РѕС‚ Р¶Рµ РёРЅРґРµРєСЃ
 		SendMessage(hList3, LB_INSERTSTRING, index, LPARAM(_T("Time is up!")));
 	}
 
@@ -132,17 +132,17 @@ void mainDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify) {
 	if (id == IDC_BUTTON1) {
 		// Add		
 
-		// Получение текста из edit
+		// РџРѕР»СѓС‡РµРЅРёРµ С‚РµРєСЃС‚Р° РёР· edit
 		GetWindowText(hEdit1, buffTask, max_size);
 		GetWindowText(hEdit2, buffTime, max_size);
 
 		if (_tcsclen(buffTask) == 0 || _tcsclen(buffTime) == 0) {
-			MessageBox(hwnd, _T("Вы заполнили не все поля!"), _T("Информация"), MB_OK);
+			MessageBox(hwnd, _T("Р’С‹ Р·Р°РїРѕР»РЅРёР»Рё РЅРµ РІСЃРµ РїРѕР»СЏ!"), _T("РРЅС„РѕСЂРјР°С†РёСЏ"), MB_OK);
 			return;
 		}
 
 		if (isTimeFormat(buffTime)) {
-			MessageBox(hwnd, _T("Введите в формате: часы:минуты:секунды!"), _T("Информация"), MB_OK);
+			MessageBox(hwnd, _T("Р’РІРµРґРёС‚Рµ РІ С„РѕСЂРјР°С‚Рµ: С‡Р°СЃС‹:РјРёРЅСѓС‚С‹:СЃРµРєСѓРЅРґС‹!"), _T("РРЅС„РѕСЂРјР°С†РёСЏ"), MB_OK);
 			return;
 		}
 
@@ -167,42 +167,42 @@ void mainDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify) {
 			// updateTimer(timerArray[resUpDate]);
 			HANDLE hThread = CreateThread(NULL, 0, Thread_timer, paramList, 0, NULL);
 
-			// Добавляем дескриптор потока в вектор
+			// Р”РѕР±Р°РІР»СЏРµРј РґРµСЃРєСЂРёРїС‚РѕСЂ РїРѕС‚РѕРєР° РІ РІРµРєС‚РѕСЂ
 			threadHandles.push_back(hThread);
 
 			timerArray.erase(timerArray.begin() + index);
 		}
 
-		// Добавление в список пункты
+		// Р”РѕР±Р°РІР»РµРЅРёРµ РІ СЃРїРёСЃРѕРє РїСѓРЅРєС‚С‹
 		SendMessage(hList1, LB_ADDSTRING, 0, LPARAM(buffTask));
 		SendMessage(hList2, LB_ADDSTRING, 0, LPARAM(buffTime));
 		SendMessage(hList3, LB_ADDSTRING, 0, LPARAM(_T("Not done")));
 
-		// Очистка edit, после ввода
+		// РћС‡РёСЃС‚РєР° edit, РїРѕСЃР»Рµ РІРІРѕРґР°
 		SetWindowText(hEdit1, _T(""));
 		SetWindowText(hEdit2, _T(""));
 	}
 	else if (id == IDC_BUTTON2) {
 		// Done
 
-		// Получение индекса выбранного пункта
+		// РџРѕР»СѓС‡РµРЅРёРµ РёРЅРґРµРєСЃР° РІС‹Р±СЂР°РЅРЅРѕРіРѕ РїСѓРЅРєС‚Р°
 		int index = SendMessage(hList1, LB_GETCURSEL, 0, 0);
 
-		// Удаление элемента по индексу
+		// РЈРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р° РїРѕ РёРЅРґРµРєСЃСѓ
 		SendMessage(hList3, LB_DELETESTRING, index, 0);
 
-		// Вставка нового текста на тот же индекс
+		// Р’СЃС‚Р°РІРєР° РЅРѕРІРѕРіРѕ С‚РµРєСЃС‚Р° РЅР° С‚РѕС‚ Р¶Рµ РёРЅРґРµРєСЃ
 		SendMessage(hList3, LB_INSERTSTRING, index, LPARAM(_T("Done")));
 
-		// Обновляем выбранный пункт
+		// РћР±РЅРѕРІР»СЏРµРј РІС‹Р±СЂР°РЅРЅС‹Р№ РїСѓРЅРєС‚
 		updateSelected();
 	}
 	else if (id == IDC_LIST1 && codeNotify == LBN_SELCHANGE || id == IDC_LIST2 && codeNotify == LBN_SELCHANGE || id == IDC_LIST3 && codeNotify == LBN_SELCHANGE) {
 		
-		// Обновляем выбранный пункт
+		// РћР±РЅРѕРІР»СЏРµРј РІС‹Р±СЂР°РЅРЅС‹Р№ РїСѓРЅРєС‚
 		updateSelected();
 
-		// Включение кнопок редаактирования
+		// Р’РєР»СЋС‡РµРЅРёРµ РєРЅРѕРїРѕРє СЂРµРґР°Р°РєС‚РёСЂРѕРІР°РЅРёСЏ
 		EnableWindow(hButtons[3], TRUE);
 		EnableWindow(hButtons[2], TRUE);
 		EnableWindow(hButtons[1], TRUE);
@@ -210,10 +210,10 @@ void mainDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify) {
 	else if (id == IDC_BUTTON3) {
 		// Delete
 
-		// Получение индекста
+		// РџРѕР»СѓС‡РµРЅРёРµ РёРЅРґРµРєСЃС‚Р°
 		int index = SendMessage(hList1, LB_GETCURSEL, 0, 0);
 
-		// Очистить содержимое по индексу
+		// РћС‡РёСЃС‚РёС‚СЊ СЃРѕРґРµСЂР¶РёРјРѕРµ РїРѕ РёРЅРґРµРєСЃСѓ
 		SendMessage(hList1, LB_DELETESTRING, index, 0);
 		SendMessage(hList2, LB_DELETESTRING, index, 0);
 		SendMessage(hList3, LB_DELETESTRING, index, 0);
@@ -221,21 +221,21 @@ void mainDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify) {
 	else if (id == IDC_BUTTON4 && !isSave) {
 		// Edit
 
-		// Получение индекста
+		// РџРѕР»СѓС‡РµРЅРёРµ РёРЅРґРµРєСЃС‚Р°
 		int index = SendMessage(hList1, LB_GETCURSEL, 0, 0);
 
-		// Получить текст по индексу
+		// РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСЃС‚ РїРѕ РёРЅРґРµРєСЃСѓ
 		SendMessage(hList1, LB_GETTEXT, index, LPARAM(buffTask));
 		SendMessage(hList2, LB_GETTEXT, index, LPARAM(buffTime));
 
-		// Установить текст в edit
+		// РЈСЃС‚Р°РЅРѕРІРёС‚СЊ С‚РµРєСЃС‚ РІ edit
 		SetWindowText(hEdit1, buffTask);
 		SetWindowText(hEdit2, buffTime);
 
-		// Изменение название кнопки на save
+		// РР·РјРµРЅРµРЅРёРµ РЅР°Р·РІР°РЅРёРµ РєРЅРѕРїРєРё РЅР° save
 		SetWindowText(hButtons[3], _T("Save"));
 
-		// Выключение кнопок добавления
+		// Р’С‹РєР»СЋС‡РµРЅРёРµ РєРЅРѕРїРѕРє РґРѕР±Р°РІР»РµРЅРёСЏ
 		EnableWindow(hButtons[0], FALSE);		
 
 		isSave = true;
@@ -243,37 +243,37 @@ void mainDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify) {
 	else if (id == IDC_BUTTON4 && isSave) {
 		// Save
 
-		// Получение индекста
+		// РџРѕР»СѓС‡РµРЅРёРµ РёРЅРґРµРєСЃС‚Р°
 		int index = SendMessage(hList1, LB_GETCURSEL, 0, 0);
 
-		// Получение текста из edit
+		// РџРѕР»СѓС‡РµРЅРёРµ С‚РµРєСЃС‚Р° РёР· edit
 		GetWindowText(hEdit1, buffTask, max_size);
 		GetWindowText(hEdit2, buffTime, max_size);
 
 		if (_tcsclen(buffTask) == 0 || _tcsclen(buffTime) == 0) {
-			MessageBox(hwnd, _T("Вы заполнили не все поля!"), _T("Информация"), MB_OK);
+			MessageBox(hwnd, _T("Р’С‹ Р·Р°РїРѕР»РЅРёР»Рё РЅРµ РІСЃРµ РїРѕР»СЏ!"), _T("РРЅС„РѕСЂРјР°С†РёСЏ"), MB_OK);
 			return;
 		}
 
 		if (isTimeFormat(buffTime)) {
-			MessageBox(hwnd, _T("Введите в формате: часы:минуты:секунды!"), _T("Информация"), MB_OK);
+			MessageBox(hwnd, _T("Р’РІРµРґРёС‚Рµ РІ С„РѕСЂРјР°С‚Рµ: С‡Р°СЃС‹:РјРёРЅСѓС‚С‹:СЃРµРєСѓРЅРґС‹!"), _T("РРЅС„РѕСЂРјР°С†РёСЏ"), MB_OK);
 			return;
 		}
 
-		// Очистить содержимое по индексу
+		// РћС‡РёСЃС‚РёС‚СЊ СЃРѕРґРµСЂР¶РёРјРѕРµ РїРѕ РёРЅРґРµРєСЃСѓ
 		SendMessage(hList1, LB_DELETESTRING, index, 0);
 		SendMessage(hList2, LB_DELETESTRING, index, 0);
 		SendMessage(hList3, LB_DELETESTRING, index, 0);
 
-		// Вставка текста по индексу
+		// Р’СЃС‚Р°РІРєР° С‚РµРєСЃС‚Р° РїРѕ РёРЅРґРµРєСЃСѓ
 		SendMessage(hList1, LB_INSERTSTRING, index, LPARAM(buffTask));
 		SendMessage(hList2, LB_INSERTSTRING, index, LPARAM(buffTime));
 		SendMessage(hList3, LB_INSERTSTRING, index, LPARAM(_T("Not done")));
 
-		// Изменение название кнопки на save
+		// РР·РјРµРЅРµРЅРёРµ РЅР°Р·РІР°РЅРёРµ РєРЅРѕРїРєРё РЅР° save
 		SetWindowText(hButtons[3], _T("Edit"));
 
-		// Очистка edit, после ввода
+		// РћС‡РёСЃС‚РєР° edit, РїРѕСЃР»Рµ РІРІРѕРґР°
 		SetWindowText(hEdit1, _T(""));
 		SetWindowText(hEdit2, _T(""));
 
@@ -281,7 +281,7 @@ void mainDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify) {
 
 		if (index != -1) {
 			/*
-			// Закрывает поток по дескриптору
+			// Р—Р°РєСЂС‹РІР°РµС‚ РїРѕС‚РѕРє РїРѕ РґРµСЃРєСЂРёРїС‚РѕСЂСѓ
 			CloseHandle(threadHandles[index]);
 
 			int tempTimer = FormatTime(GetArrayFormatTime(buffTime));
@@ -294,15 +294,15 @@ void mainDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify) {
 
 			HANDLE hThread = CreateThread(NULL, 0, Thread_timer, paramList, 0, NULL);
 
-			// Добавляем дескриптор потока в вектор
+			// Р”РѕР±Р°РІР»СЏРµРј РґРµСЃРєСЂРёРїС‚РѕСЂ РїРѕС‚РѕРєР° РІ РІРµРєС‚РѕСЂ
 			threadHandles[index] = hThread;
 			*/
 		}
 
-		// Обновляем выбранный пункт
+		// РћР±РЅРѕРІР»СЏРµРј РІС‹Р±СЂР°РЅРЅС‹Р№ РїСѓРЅРєС‚
 		updateSelected();
 
-		// Включение кнопок добавления
+		// Р’РєР»СЋС‡РµРЅРёРµ РєРЅРѕРїРѕРє РґРѕР±Р°РІР»РµРЅРёСЏ
 		EnableWindow(hButtons[0], TRUE);
 
 	}
@@ -314,23 +314,23 @@ void mainDlg::Cls_OnCommand(HWND hwnd, int id, HWND hwndCtl, UINT codeNotify) {
 bool mainDlg::isTimeFormat(_TCHAR* text) {
 	const int lengthText = _tcsclen(text);
 
-	// Првоерка на кол-во символов
+	// РџСЂРІРѕРµСЂРєР° РЅР° РєРѕР»-РІРѕ СЃРёРјРІРѕР»РѕРІ
 	if (lengthText >= 9 || lengthText < 8)
 		return true;
 
-	// Проверка на формат
+	// РџСЂРѕРІРµСЂРєР° РЅР° С„РѕСЂРјР°С‚
 	if (text[2] != _T(':') || text[5] != _T(':'))
 		return true;
 
 	_TCHAR temp[3] = _T("");
 
 	for (int i = 0; i < lengthText; i++) {
-		// Проверка на наличие букв
+		// РџСЂРѕРІРµСЂРєР° РЅР° РЅР°Р»РёС‡РёРµ Р±СѓРєРІ
 		if (isalpha(text[i])) { 
 			return true;
 		}
 
-		// Проверка на корректный ввод чисел
+		// РџСЂРѕРІРµСЂРєР° РЅР° РєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ С‡РёСЃРµР»
 		if (text[i] != _T(':')) {
 			temp[0] = text[i];
 			temp[1] = text[i + 1];
@@ -396,17 +396,17 @@ int mainDlg::FormatTime(int* timerArray) {
 }
 
 void mainDlg::updateSelected() {
-	// Получение индекста
+	// РџРѕР»СѓС‡РµРЅРёРµ РёРЅРґРµРєСЃС‚Р°
 	int index = SendMessage(hList1, LB_GETCURSEL, 0, 0);
 
-	// Сделать пункты активными по индексу
+	// РЎРґРµР»Р°С‚СЊ РїСѓРЅРєС‚С‹ Р°РєС‚РёРІРЅС‹РјРё РїРѕ РёРЅРґРµРєСЃСѓ
 	SendMessage(hList1, LB_SETCURSEL, index, 0);
 	SendMessage(hList2, LB_SETCURSEL, index, 0);
 	SendMessage(hList3, LB_SETCURSEL, index, 0);
 }
 
 void mainDlg::updateTimer(int& timer) {
-	// Создаем таймер синхронизации
+	// РЎРѕР·РґР°РµРј С‚Р°Р№РјРµСЂ СЃРёРЅС…СЂРѕРЅРёР·Р°С†РёРё
 	HANDLE hTimer = CreateWaitableTimer(NULL, TRUE, NULL);
 	SYSTEMTIME st;
 
@@ -416,18 +416,18 @@ void mainDlg::updateTimer(int& timer) {
 
 	FILETIME ft;
 
-	// Преобразуем структуру SYSTEMTIME в FILETIME
+	// РџСЂРµРѕР±СЂР°Р·СѓРµРј СЃС‚СЂСѓРєС‚СѓСЂСѓ SYSTEMTIME РІ FILETIME
 	SystemTimeToFileTime(&st, &ft); 
 
-	// Преобразуем местное время в UTC-время 
+	// РџСЂРµРѕР±СЂР°Р·СѓРµРј РјРµСЃС‚РЅРѕРµ РІСЂРµРјСЏ РІ UTC-РІСЂРµРјСЏ 
 	LocalFileTimeToFileTime(&ft, &ft); 
 	
-	// Устанавливаем таймер
+	// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј С‚Р°Р№РјРµСЂ
 	SetWaitableTimer(hTimer, (LARGE_INTEGER*)&ft, 0, NULL, NULL, FALSE); 
 
 	MessageBox(0, _T("DO"), 0, 0);
 
-	// Ожидание перехода таймера в сигнальное состояние
+	// РћР¶РёРґР°РЅРёРµ РїРµСЂРµС…РѕРґР° С‚Р°Р№РјРµСЂР° РІ СЃРёРіРЅР°Р»СЊРЅРѕРµ СЃРѕСЃС‚РѕСЏРЅРёРµ
 	if (WaitForSingleObject(hTimer, INFINITE) == WAIT_OBJECT_0) {
 		MessageBox(0, _T("FFFFF"), 0, 0);
 	}
@@ -439,7 +439,7 @@ int* mainDlg::GetArrayFormatTime(_TCHAR* text) {
 	int* rez = new int[3];
 	
 	for (int i = 0; i < lengthText; i++) {
-		// Проверка на корректный ввод чисел
+		// РџСЂРѕРІРµСЂРєР° РЅР° РєРѕСЂСЂРµРєС‚РЅС‹Р№ РІРІРѕРґ С‡РёСЃРµР»
 		if (text[i] != _T(':')) {
 			temp[0] = text[i];
 			temp[1] = text[i + 1];
