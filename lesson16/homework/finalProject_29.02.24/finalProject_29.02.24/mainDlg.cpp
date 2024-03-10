@@ -394,7 +394,6 @@ bool mainDlg::isUpdate(const int* arrayTime, int rows, int cols) {
 int mainDlg::FormatTime(int* timerArray) {	
 	return timerArray[0] * 3600 + timerArray[1] * 60 + timerArray[2];
 }
-
 void mainDlg::updateSelected() {
 	// Получение индекста
 	int index = SendMessage(hList1, LB_GETCURSEL, 0, 0);
@@ -404,7 +403,6 @@ void mainDlg::updateSelected() {
 	SendMessage(hList2, LB_SETCURSEL, index, 0);
 	SendMessage(hList3, LB_SETCURSEL, index, 0);
 }
-
 void mainDlg::updateTimer(int& timer) {
 	// Создаем таймер синхронизации
 	HANDLE hTimer = CreateWaitableTimer(NULL, TRUE, NULL);
@@ -432,7 +430,6 @@ void mainDlg::updateTimer(int& timer) {
 		MessageBox(0, _T("FFFFF"), 0, 0);
 	}
 }
-
 int* mainDlg::GetArrayFormatTime(_TCHAR* text) {
 	const int lengthText = _tcsclen(text);
 	_TCHAR temp[3] = _T("");

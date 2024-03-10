@@ -1,2 +1,6 @@
 ﻿  mainDlg.cpp
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_05.03.24\finalProject_05.03.24\mainDlg.cpp(16,33): warning C4267: инициализация: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_05.03.24\finalProject_05.03.24\mainDlg.cpp(16,23): warning C4267: инициализация: преобразование из "size_t" в "const int"; возможна потеря данных
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_05.03.24\finalProject_05.03.24\mainDlg.cpp(247,10): warning C4244: инициализация: преобразование "LRESULT" в "int", возможна потеря данных
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_05.03.24\finalProject_05.03.24\mainDlg.cpp(250,10): warning C4244: инициализация: преобразование "LRESULT" в "int", возможна потеря данных
   finalProject_05.03.24.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\finalProject\finalProject_05.03.24\x64\Debug\finalProject_05.03.24.exe

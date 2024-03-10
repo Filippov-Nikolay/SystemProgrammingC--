@@ -1,0 +1,8 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  ContextMenuDlg.cpp
+  ContextMenu.cpp
+  Создание кода...
+ContextMenu.rc(61): warning RC2182: duplicate dialog control ID 1005
+  
+ContextMenu.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
+  ContextMenu.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson8\examples\Menu\ContextMenu\Debug\ContextMenu.exe

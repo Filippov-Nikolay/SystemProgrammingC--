@@ -1,0 +1,8 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  Standard Dialog.cpp
+  MainDialog.cpp
+  Создание кода...
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson9\examples\Standard Modal Dialog\Standard Modal Dialog\Standard Dialog\MainDialog.cpp(35,4): warning C4996: 'wcscat': This function or variable may be unsafe. Consider using wcscat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson9\examples\Standard Modal Dialog\Standard Modal Dialog\Standard Dialog\MainDialog.cpp(52,4): warning C4996: 'wcscat': This function or variable may be unsafe. Consider using wcscat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+MainDialog.obj : warning LNK4075: не учитывается "/EDITANDCONTINUE" из-за спецификации "/SAFESEH"
+  Standard Dialog.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson9\examples\Standard Modal Dialog\Standard Modal Dialog\Debug\Standard Dialog.exe

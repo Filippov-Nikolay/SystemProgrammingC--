@@ -1,0 +1,7 @@
+﻿cl : командная строка  warning D9035: использование параметра "Gm" нежелательно, он будет удален в следующих выпусках
+  ProgressControlDlg.cpp
+C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson7\examples\Slider\ProgressControl\ProgressControl\ProgressControlDlg.cpp(17,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  ProgressControl.cpp
+  Создание кода...
+ProgressControl.rc(10): fatal error RC1015: cannot open include file 'afxres.h'.
+  

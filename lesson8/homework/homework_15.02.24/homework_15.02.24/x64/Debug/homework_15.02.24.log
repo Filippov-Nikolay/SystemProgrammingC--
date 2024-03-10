@@ -1,4 +1,5 @@
 ﻿  main.cpp
 C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson8\homework\homework_15.02.24\homework_15.02.24\main.cpp(40,9): warning C4244: return: преобразование "INT_PTR" в "int", возможна потеря данных
 C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson8\homework\homework_15.02.24\homework_15.02.24\main.cpp(100,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  LINK : не найден или не выполнена сборка C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson8\homework\homework_15.02.24\x64\Debug\homework_15.02.24.exe при последней инкрементной компоновке; выполняется полная компоновка
   homework_15.02.24.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson8\homework\homework_15.02.24\x64\Debug\homework_15.02.24.exe

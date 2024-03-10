@@ -1,3 +1,2 @@
-﻿  Main.cpp
-C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson3\examples\Resources\Resources\Resources\Main.cpp(58,12): warning C4244: return: преобразование "WPARAM" в "int", возможна потеря данных
+﻿  LINK : не найден или не выполнена сборка C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson3\examples\Resources\Resources\x64\Debug\Resources.exe при последней инкрементной компоновке; выполняется полная компоновка
   Resources.vcxproj -> C:\Users\filip\Desktop\temp\SystemProgrammingC--\lesson3\examples\Resources\Resources\x64\Debug\Resources.exe
